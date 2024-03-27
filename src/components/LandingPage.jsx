@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 // Frontend Imports
 import logo from '../assets/images/logo.png';
 import rightImage from '../assets/images/rightImage.jpeg';
-import '../style/HomePage.css';
+import '../style/LandingPage.css';
 import '../App.css';
 
-function HomePage() {
+function LandingPage() {
   let navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -38,4 +38,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default LandingPage;
