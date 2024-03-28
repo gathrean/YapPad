@@ -1,9 +1,7 @@
-// Backend Imports
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-// Frontend Imports
 import '../style/SignupPage.css';
 import '../App.css';
 import logo from '../assets/images/logo.png';
@@ -12,10 +10,10 @@ function SignupPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleSignup = async (event) => {
         event.preventDefault();
-        console.log("Signup attempt with", email);
 
         try {
             const response = await axios.post('http://localhost:8000/auth/register', {
@@ -26,6 +24,11 @@ function SignupPage() {
             console.log('Signup successful.', response.data.message);
         } catch (error) {
             console.error('Signup failed:', error.message);
+            if (error.response && error.response.data && error.response.data.error === 'User already exists') {
+                setErrorMessage('Email already exists. Please try a different email.');
+            } else {
+                setErrorMessage('An error occurred while signing up. Please try again later.');
+            }
         }
     };
 
@@ -36,6 +39,14 @@ function SignupPage() {
                     <img src={logo} alt="Logo" className="signup-logo" />
                 </div>
                 <h2>Sign Up</h2>
+
+                {/* Error message shown to user */}
+                {errorMessage && (
+                    <p className="error-message">
+                        {errorMessage === 'User already exists' ? 'User with this email already exists. Please try a different email.' : errorMessage}
+                    </p>
+                )}
+
                 <div className="input-group">
                     <label htmlFor="email">Email (will be used for Login)</label>
                     <input
@@ -44,6 +55,7 @@ function SignupPage() {
                         name="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        autoComplete="email" // Autocomplete for google chrome
                     />
                 </div>
                 <div className="input-group">
@@ -54,6 +66,7 @@ function SignupPage() {
                         name="username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                        autoComplete="username" // Autocomplete for google chrome
                     />
                 </div>
                 <div className="input-group">
@@ -64,6 +77,7 @@ function SignupPage() {
                         name="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        autoComplete="current-password" // Autocomplete for google chrome
                     />
                 </div>
                 <button type="submit" className="signup-button">Sign Up</button>
