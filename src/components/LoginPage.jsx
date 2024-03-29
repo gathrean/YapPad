@@ -4,6 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 // Frontend Imports
+import { useAuth } from './AuthContext.jsx'; // Adjust the import path as necessary
+
+// Style Imports
 import '../style/LoginPage.css';
 import '../App.css';
 import logo from '../assets/images/logo.png';
@@ -14,18 +17,18 @@ function LoginPage() {
     const [errorMessage, setErrorMessage] = useState('');
 
     const navigate = useNavigate();
+    const { login } = useAuth(); // Destructure login function from useAuth
 
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
             const response = await axios.post('http://localhost:8000/auth/login', {
                 email: email,
-                password: password
+                password: password,
             });
             console.log('Login successful: ', email);
-
-            // Step 3: Redirect to /home upon successful login
-            navigate('/home');
+            login(); // Update the login state to true using the login function from AuthContext
+            navigate('/home'); // Redirect the user to the home page after successful login
         } catch (error) {
             console.error('Login failed:', error.response || error.request || error.message);
             if (error.response) {
