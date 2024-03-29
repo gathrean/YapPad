@@ -1,6 +1,6 @@
 // Backend Imports
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
 
 // Frontend Imports
@@ -13,6 +13,8 @@ function LoginPage() {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
+    const navigate = useNavigate();
+
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
@@ -21,6 +23,9 @@ function LoginPage() {
                 password: password
             });
             console.log('Login successful: ', email);
+
+            // Step 3: Redirect to /home upon successful login
+            navigate('/home');
         } catch (error) {
             console.error('Login failed:', error.response || error.request || error.message);
             if (error.response) {
