@@ -14,16 +14,16 @@ function HomePage() {
 
     const fetchStory = async (textToContinue) => {
         try {
-            const response = await axios.get(`https://ba80-70-71-130-6.ngrok-free.app/gen/${encodeURIComponent(textToContinue)}`);
-            setError(''); 
+            const response = await axios.get(`https://ba80-70-71-130-6.ngrok-free.app/gen/${encodeURIComponent(textToContinue)}`, { withCredentials: false });
+            setError('');
             return response.data[0].generated_text;
         } catch (error) {
             console.error('Error fetching the continued story:', error);
             setError('Yap too long dude! Pls try again.');
-            return ''; 
+            return '';
         }
     };
-
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
         const newPartOfStory = await fetchStory(storyInput);
@@ -31,18 +31,6 @@ function HomePage() {
             setContinuedStory(newPartOfStory);
         }
     };
-
-    // const handleKeepYapping = async () => {
-    //     if (!storyInput && !continuedStory) {
-    //         setError('Enter your initial story first!');
-    //         return;
-    //     }
-    //     const promptText = continuedStory.slice(-280); // our current max prompt length
-    //     const newPartOfStory = await fetchStory(promptText);
-    //     if (newPartOfStory) {
-    //         setContinuedStory(prevStory => prevStory + " " + newPartOfStory);
-    //     }
-    // };
 
     const handleKeepYapping = async () => {
         if (!storyInput && !continuedStory) {
@@ -57,28 +45,29 @@ function HomePage() {
         const newPartOfStory = await fetchStory(promptText);
         setContinuedStory(prevStory => prevStory + " " + newPartOfStory);
     };
-    
+
+    const handleDiscard = () => {
+        setContinuedStory(''); 
+    };
+
     function extractUniqueSnippet(story) {
-        // split yap into sentences. 
         const sentences = story.match(/[^\.!\?]+[\.!\?]+/g);
         if (!sentences || sentences.length === 0) {
-            return ''; // story is too short
+            return '';
         }
     
-        // start from the end and look for a sentence that doesn't immediately repeat
         for (let i = sentences.length - 1; i > 0; i--) {
             if (sentences[i] !== sentences[i - 1]) {
-                return sentences[i].trim(); // found a unique sentence to use as the next yap prompt
+                return sentences[i].trim();
             }
         }
     
-        return sentences[sentences.length - 1].trim(); // Default to the last sentence if all else fails.
+        return sentences[sentences.length - 1].trim();
     }
 
-    
     return (
         <div className="homepage-container">
-            <h1>Welcome to the YapPad</h1>
+            <h1>Welcome to YapPad</h1>
             <p>How it works: Enter the start of whatever story you want and let YapPad finish the rest.</p>
             {error && <p className="error">{error}</p>}
             <div className="search-container">
@@ -99,7 +88,7 @@ function HomePage() {
             </div>
 
             <div className="buttons">
-                <button className="discard">Discard</button>
+                <button className="discard" onClick={handleDiscard}>Discard</button>
                 <button className="save">Save</button>
                 <button className="yapping" onClick={handleKeepYapping}>Keep Yapping</button>
             </div>
