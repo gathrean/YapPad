@@ -14,7 +14,7 @@ function HomePage() {
 
     const fetchStory = async (textToContinue) => {
         try {
-            const response = await axios.get(`https://306f-70-71-130-6.ngrok-free.app/gen/${encodeURIComponent(textToContinue)}`);
+            const response = await axios.get(`https://ba80-70-71-130-6.ngrok-free.app/gen/${encodeURIComponent(textToContinue)}`);
             setError(''); 
             return response.data[0].generated_text;
         } catch (error) {

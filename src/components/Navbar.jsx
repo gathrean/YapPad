@@ -6,12 +6,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Navbar() {
     const navigate = useNavigate(); 
 
-    const handleLogout = async () => {
+
+    const handleSignOut = async () => {
         try {
-            await axios.post('http://localhost:8000/auth/logout'); 
-            navigate('/login'); 
+            await axios.post('http://localhost:8000/auth/logout');
+            navigate('/'); 
         } catch (error) {
-            console.error('Logout failed:', error.response || error.request || error.message);
+            console.error('Error signing out:', error);
         }
     };
 
@@ -22,11 +23,10 @@ function Navbar() {
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                {/* IF LOGGED IN */}
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link className="nav-link" to="chamber">Yapping Chamber</Link>
+                            <Link className="nav-link" to="/chamber">Yapping Chamber</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/home">Yap</Link>
@@ -34,11 +34,8 @@ function Navbar() {
                         <li className="nav-item">
                             <Link className="nav-link" to="/settings">Settings</Link>
                         </li>
-                        <li className="nav-item">
-                            {/* Change the Link to a button or similar to handle the logout event */}
-                            <button onClick={handleLogout} className="nav-link" style={{ background: 'none', border: 'none', padding: 0, color: '#007bff', cursor: 'pointer' }}>
-                                Sign Out
-                            </button>
+                        <li>
+                            <Link className="nav-link" to="/" onClick={handleSignOut}>Sign Out</Link>
                         </li>
                     </ul>
                 </div>
