@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuth } from './AuthContext.jsx'; 
 
 function Navbar() {
-    const { isLoggedIn, logout } = useAuth();
+    const { isLoggedIn, isAdmin, logout } = useAuth();
     const navigate = useNavigate();
 
     const handleSignOut = async () => {
@@ -38,6 +38,9 @@ function Navbar() {
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/settings">Settings</Link>
                                 </li>
+                                {isAdmin && <li className="nav-item">
+                                    <Link className="nav-link" to="/admin">Admin</Link>
+                                </li>}
                                 <li className="nav-item">
                                     <button className="nav-link btn btn-link" onClick={handleSignOut} style={{ boxShadow: 'none' }}>Sign Out</button>
                                 </li>
