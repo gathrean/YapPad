@@ -14,11 +14,13 @@ import HomePage from './components/HomePage';
 import AdminPage from './components/AdminPage';
 import Navbar from './components/Navbar'; 
 import Footer from './components/Footer'; 
+import { AuthProvider } from './components/AuthContext.jsx';
 
 axios.defaults.withCredentials = true
 
 function App() {
     return (
+        <AuthProvider>
         <Router>
             <Navbar /> 
             <Routes>
@@ -30,6 +32,7 @@ function App() {
             </Routes>
             <Footer /> 
         </Router>
+        </AuthProvider>
     );
 }
 
