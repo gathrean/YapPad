@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import '../style/Chamber.css';
 
 function YapDetail() {
     const [yap, setYap] = useState(null);
@@ -21,13 +22,15 @@ function YapDetail() {
     }, [id]);
 
     return (
-        <div>
-            <button onClick={() => navigate(-1)}>Back</button>
-            {yap && (
+        <div className="yap-detail-container">
+            <button onClick={() => navigate(-1)}>Back to Yapping Chamber</button>
+            {yap ? (
                 <>
-                    <h1>{yap.title}</h1>
-                    <p>{yap.content}</p>
+                    <h1 className="yap-detail-title">{yap.title}</h1>
+                    <p className="yap-detail-content">{yap.content}</p>
                 </>
+            ) : (
+                <p>Loading yap...</p>
             )}
         </div>
     );

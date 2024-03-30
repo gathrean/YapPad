@@ -125,8 +125,9 @@ function HomePage() {
             </div>
 
             <div className="yapStory">
-                {continuedStory && <p>{continuedStory}</p>}
+            {continuedStory ? <p>{continuedStory}</p> : <p className="yapStory-placeholder">This is where your yap will be generated!</p>}
             </div>
+
 
             <div className="buttons">
                 <button className="discard" onClick={handleDiscard}>Discard</button>
