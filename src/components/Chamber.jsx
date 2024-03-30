@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import '../style/Chamber.css'; 
+
 
 function Chamber() {
     const [yaps, setYaps] = useState([]);
@@ -18,13 +21,11 @@ function Chamber() {
     }, []);
 
     return (
-        <div>
-            <h1>Yapping Chamber</h1>
-            {yaps.map((yap, index) => (
-                <div key={index}>
-                    <h2>{yap.title}</h2>
-                    <p>{yap.content}</p>
-                </div>
+        <div className="yaps-grid">
+            {yaps.map((yap) => (
+                <Link key={yap._id} to={`/chamber/${yap._id}`} className="yap-title">
+                    {yap.title}
+                </Link>
             ))}
         </div>
     );
