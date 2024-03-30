@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../style/Home.css';
 import axios from 'axios';
 
@@ -6,6 +6,27 @@ function HomePage() {
     const [storyInput, setStoryInput] = useState(''); // holds user's initial input
     const [continuedStory, setContinuedStory] = useState('');
     const [error, setError] = useState(''); 
+    const [apiCalls, setApiCalls] = useState(0); // track API calls
+
+
+    useEffect(() => {
+        fetchApiConsumption();
+      }, []);
+  
+      const fetchApiConsumption = async () => {
+        try {
+            const response = await axios.get('http://localhost:8000/yaps/api-consumption', {
+                withCredentials: true 
+            });
+            setApiCalls(response.data.calls);
+            // setMaxApiCalls(response.data.maxCalls); // returning maxCalls from the backend
+        } catch (error) {
+            console.error('Error fetching API consumption:', error);
+        }
+      };
+      
+    
+    
 
     const handleInputChange = (event) => {
         setStoryInput(event.target.value);
@@ -91,6 +112,10 @@ function HomePage() {
                 <button className="discard" onClick={handleDiscard}>Discard</button>
                 <button className="save">Save</button>
                 <button className="yapping" onClick={handleKeepYapping}>Keep Yapping</button>
+            </div>
+
+            <div className="api-calls-display">
+                You have made {apiCalls}/20 Yap calls
             </div>
         </div>
     );
