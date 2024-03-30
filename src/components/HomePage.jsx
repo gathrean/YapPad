@@ -35,7 +35,7 @@ function HomePage() {
 
     const fetchStory = async (textToContinue) => {
         try {
-            const response = await axios.get(`https://ba80-70-71-130-6.ngrok-free.app/gen/${encodeURIComponent(textToContinue)}`, { withCredentials: false });
+            const response = await axios.get(`https://b4ae-70-71-130-6.ngrok-free.app/gen/${encodeURIComponent(textToContinue)}`, { withCredentials: false });
             setError('');
             return response.data[0].generated_text;
         } catch (error) {
@@ -86,6 +86,26 @@ function HomePage() {
         return sentences[sentences.length - 1].trim();
     }
 
+
+    const handleSaveYap = async () => {
+        try {
+            // title is the first 30 characters of continuedStory
+            const title = continuedStory.substring(0, 30);
+            const content = continuedStory;
+    
+            const response = await axios.post('http://localhost:8000/yaps/create', { title, content }, { withCredentials: true });
+            console.log('Yap saved:', response.data);
+            alert('Yap saved successfully!');
+            // clears the yap input and continued story when successfully save
+            setStoryInput('');
+            setContinuedStory('');
+        } catch (error) {
+            console.error('Error saving the yap:', error);
+            setError('Failed to save the yap. Please try again.');
+        }
+    };
+    
+
     return (
         <div className="homepage-container">
             <h1>Welcome to YapPad</h1>
@@ -110,7 +130,7 @@ function HomePage() {
 
             <div className="buttons">
                 <button className="discard" onClick={handleDiscard}>Discard</button>
-                <button className="save">Save</button>
+                <button className="save" onClick={handleSaveYap}>Save</button>
                 <button className="yapping" onClick={handleKeepYapping}>Keep Yapping</button>
             </div>
 
