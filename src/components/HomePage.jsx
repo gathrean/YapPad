@@ -109,7 +109,13 @@ function HomePage() {
     return (
         <div className="homepage-container">
             <h1>Welcome to YapPad</h1>
-            <p>How it works: Enter the start of whatever story you want and let YapPad finish the rest.</p>
+            <p className="how-it-works">How it works: Enter the start of whatever story you want and let YapPad finish the rest.</p>
+
+            <div className="api-calls-display">
+                You have made {apiCalls}/20 Yap calls
+            </div>
+
+            
             {error && <p className="error">{error}</p>}
             <div className="search-container">
                 <form className="search-form" onSubmit={handleSubmit}>
@@ -130,14 +136,11 @@ function HomePage() {
 
 
             <div className="buttons">
-                <button className="discard" onClick={handleDiscard}>Discard</button>
-                <button className="save" onClick={handleSaveYap}>Save</button>
-                <button className="yapping" onClick={handleKeepYapping}>Keep Yapping</button>
+                <button className="button discard" onClick={handleDiscard}>Discard</button>
+                <button className="button save" onClick={handleSaveYap}>Save</button>
+                <button className="button yapping" onClick={handleKeepYapping}>Keep Yapping</button>
             </div>
 
-            <div className="api-calls-display">
-                You have made {apiCalls}/20 Yap calls
-            </div>
         </div>
     );
 }
