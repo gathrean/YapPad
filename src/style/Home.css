@@ -42,3 +42,26 @@
 .search-button:hover {
     background-color: #0056b3;
 }
+
+
+
+
+.yapStory {
+    width: 60%; 
+    height: 300px; 
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    border: 2px solid #ddd;
+    border-radius: 8px; 
+    padding: 20px; 
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+    font-family: 'Times New Roman', Times, serif; 
+    color: #333; 
+    text-align: left; 
+}
+
+.yapStory-placeholder {
+    color: #aaa; 
+    font-style: italic; 
+}
