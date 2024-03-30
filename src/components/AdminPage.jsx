@@ -21,9 +21,24 @@ export default function AdminPage() {
   return (
     <div className={styles.root}>
       <div className={styles.main}>
-        {users.map((u) => {
-          return <div>{u.username}: {u.email}</div>;
-        })}
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>API Calls</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((u) => (
+              <tr key={u._id}>
+                <td>{u.username}</td>
+                <td>{u.email}</td>
+                <td>{u.consumption || 0}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
