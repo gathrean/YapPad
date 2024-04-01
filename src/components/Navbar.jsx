@@ -14,8 +14,6 @@ import { navbarMessages } from '../lang/messages/user';
 import YapPadLogo from '../assets/images/yappad-logo.png';
 import "../style/Navbar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useAuth } from './AuthContext.jsx';
-import { navbarMessages } from '../lang/messages/user'; 
 import { API_BASE } from '../api_constants.js';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';

@@ -4,8 +4,6 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-import { useState } from 'react';
-import axios from 'axios';
 import '../style/LoginPage.css';
 import '../App.css';
 import logo from '../assets/images/logo.png';
