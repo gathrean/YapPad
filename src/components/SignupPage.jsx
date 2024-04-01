@@ -10,6 +10,7 @@ import { signupPageMessages } from "../lang/messages/user";
 import "../style/SignupPage.css";
 import "../App.css";
 import logo from "../assets/images/logo.png";
+import { API_BASE } from "../api_constants";
 
 function SignupPage() {
   const [username, setUsername] = useState("");
@@ -23,7 +24,7 @@ function SignupPage() {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8000/auth/register", {
+      const response = await axios.post(`${API_BASE}/auth/register`, {
         username,
         email,
         password,

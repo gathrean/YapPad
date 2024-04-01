@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../style/Chamber.css';
 import { chamberMessages } from '../lang/messages/user';
+import { API_BASE } from '../api_constants';
 
 function Chamber() {
     const [yaps, setYaps] = useState([]);
@@ -13,7 +14,7 @@ function Chamber() {
     useEffect(() => {
         const fetchYaps = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/yaps/saved', { withCredentials: true });
+                const response = await axios.get(`${API_BASE}/yaps/saved`, { withCredentials: true });
                 setYaps(response.data);
             } catch (error) {
                 console.error(chamberMessages.fetchError, error); 

@@ -9,6 +9,7 @@ import '../style/LoginPage.css';
 import '../App.css';
 import logo from '../assets/images/logo.png';
 import { loginPageMessages } from '../lang/messages/user'; 
+import { API_BASE } from '../api_constants.js';
 
 function LoginPage() {
     const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ function LoginPage() {
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8000/auth/login', {
+            const response = await axios.post(`${API_BASE}/auth/login`, {
                 email,
                 password,
             });

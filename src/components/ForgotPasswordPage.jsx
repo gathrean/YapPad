@@ -7,6 +7,7 @@ import '../style/LoginPage.css';
 import '../App.css';
 import logo from '../assets/images/logo.png';
 import { forgotPasswordMessages } from '../lang/messages/user'; 
+import { API_BASE } from '../api_constants';
 
 export default function ForgotPasswordPage() {
     const [email, setEmail] = useState("");
@@ -17,7 +18,7 @@ export default function ForgotPasswordPage() {
         event.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:8000/auth/forgot-password', { email });
+            const response = await axios.post(`${API_BASE}/auth/forgot-password`, { email });
             setSuccess(forgotPasswordMessages.emailSentSuccess); 
             console.log('Reset successful.', response.data);
         } catch (error) {

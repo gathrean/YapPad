@@ -8,6 +8,7 @@ import logo from '../assets/images/logo.png';
 import { useState } from 'react';
 import axios from 'axios';
 import { resetPasswordPageMessages } from '../lang/messages/user'; 
+import { API_BASE } from '../api_constants';
 
 export default function ResetPasswordPage() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -19,7 +20,7 @@ export default function ResetPasswordPage() {
         event.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:8000/auth/reset-password', {
+            const response = await axios.post(`${API_BASE}/auth/reset-password`, {
                 email: searchParams.get("email"),
                 token: searchParams.get("token"),
                 password: password,

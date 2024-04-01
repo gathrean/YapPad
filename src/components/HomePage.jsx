@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../style/Home.css';
 import { homePageMessages } from '../lang/messages/user';
+import { API_BASE, LLM_API_BASE } from '../api_constants';
 
 function HomePage() {
     const [storyInput, setStoryInput] = useState('');
@@ -18,7 +19,7 @@ function HomePage() {
 
     const fetchApiConsumption = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/yaps/api-consumption', { withCredentials: true });
+            const response = await axios.get(`${API_BASE}/yaps/api-consumption`, { withCredentials: true });
             setApiCalls(response.data.calls);
         } catch (error) {
             console.error('Error fetching API consumption:', error);
@@ -35,7 +36,7 @@ function HomePage() {
 
     const fetchStory = async (textToContinue) => {
         try {
-            const response = await axios.get(`https://b4ae-70-71-130-6.ngrok-free.app/gen/${encodeURIComponent(textToContinue)}`, { withCredentials: false });
+            const response = await axios.get(`${LLM_API_BASE}/gen/${encodeURIComponent(textToContinue)}`, { withCredentials: false });
             setError('');
             return response.data[0].generated_text;
         } catch (error) {
@@ -91,7 +92,7 @@ function HomePage() {
             const title = continuedStory.substring(0, 30);
             const content = continuedStory;
 
-            const response = await axios.post('http://localhost:8000/yaps/create', { title, content }, { withCredentials: true });
+            const response = await axios.post(`${API_BASE}/yaps/create`, { title, content }, { withCredentials: true });
             console.log('Yap saved:', response.data);
             alert(homePageMessages.yapSavedSuccessfully);
             setStoryInput('');

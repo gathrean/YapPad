@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { yapDetailPageMessages } from '../lang/messages/user'; 
 import '../style/Chamber.css';
+import { API_BASE } from '../api_constants';
 
 function YapDetail() {
     const [yap, setYap] = useState(null);
@@ -15,7 +16,7 @@ function YapDetail() {
     useEffect(() => {
         const fetchYap = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/yaps/${id}`, { withCredentials: true });
+                const response = await axios.get(`${API_BASE}/yaps/${id}`, { withCredentials: true });
                 setYap(response.data);
             } catch (error) {
                 console.error('Error fetching yap:', error);

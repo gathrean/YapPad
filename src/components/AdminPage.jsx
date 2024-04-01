@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "../style/AdminPage.module.css";
 import { adminPageMessages } from "../lang/messages/user";
+import { API_BASE } from "../api_constants";
 
 export default function AdminPage() {
   let [users, setUsers] = useState([]);
@@ -12,7 +13,7 @@ export default function AdminPage() {
 
   useEffect(() => {
     async function fetchData() {
-      const ret = await axios.get(`http://localhost:8000/admin/users`);
+      const ret = await axios.get(`${API_BASE}/admin/users`);
       setLoading(false);
       setUsers(ret.data);
     }

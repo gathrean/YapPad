@@ -7,6 +7,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuth } from './AuthContext.jsx';
 import { navbarMessages } from '../lang/messages/user'; 
+import { API_BASE } from '../api_constants.js';
 
 function Navbar() {
     const { isLoggedIn, isAdmin, logout } = useAuth();
@@ -14,7 +15,7 @@ function Navbar() {
 
     const handleSignOut = async () => {
         try {
-            await axios.post('http://localhost:8000/auth/logout');
+            await axios.post(`${API_BASE}/auth/logout`);
             logout();
             navigate('/');
         } catch (error) {
