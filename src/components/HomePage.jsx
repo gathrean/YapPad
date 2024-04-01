@@ -133,7 +133,6 @@ function HomePage() {
 
             <div className="yapStory">
                 {continuedStory ? <p>{continuedStory}</p> : <p className="yapStory-placeholder">{homePageMessages.yapStoryPlaceholder}</p>}
-                {continuedStory ? <p>{continuedStory}</p> : <p className="yapStory-placeholder">{homePageMessages.yapStoryPlaceholder}</p>}
             </div>
             <div className="buttons">
                 <button className="button yapping" onClick={handleKeepYapping}>{homePageMessages.keepYapping}</button>
