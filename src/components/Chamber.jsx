@@ -1,8 +1,11 @@
+/// DISCLOSURE: the following JavaScript code has been created with the aid of 
+// Chat GPT 3.5 and edited by Group 6. 
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import '../style/Chamber.css'; 
-
+import '../style/Chamber.css';
+import { chamberMessages } from '../lang/messages/user';
 
 function Chamber() {
     const [yaps, setYaps] = useState([]);
@@ -13,7 +16,7 @@ function Chamber() {
                 const response = await axios.get('http://localhost:8000/yaps/saved', { withCredentials: true });
                 setYaps(response.data);
             } catch (error) {
-                console.error('Error fetching yaps:', error);
+                console.error(chamberMessages.fetchError, error); 
             }
         };
 
