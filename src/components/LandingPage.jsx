@@ -26,8 +26,8 @@ function LandingPage() {
         </div>
         <h1>Welcome to YapPad</h1> 
         <div className="button-container">
-          <button className="button" onClick={handleLoginClick}>Login</button>
-          <button className="button" onClick={handleSignupClick}>Sign Up</button>
+          <button className="login-button" onClick={handleLoginClick}>Login</button>
+          <button className="login-button" onClick={handleSignupClick}>Get Started</button>
         </div>
       </div>
     </div>
