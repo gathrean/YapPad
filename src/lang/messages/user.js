@@ -36,7 +36,7 @@ export const homePageMessages = {
   apiCallsMade: "You have made {apiCalls}/20 Yap calls", // Note: {apiCalls} is a placeholder for dynamic data
   startTypingYourStory: "Start typing your story...",
   startYapping: "Start Yapping",
-  yapStoryPlaceholder: "This is where your yap will be generated!",
+  yapStoryPlaceholder: "This is where your yap will be generated! (Might take a few seconds after clicking 'Start Yapping')",
   discard: "Discard",
   save: "Save",
   keepYapping: "Continue",
