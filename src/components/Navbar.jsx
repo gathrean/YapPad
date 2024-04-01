@@ -50,12 +50,14 @@ function YapPadNavbar() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto"></Nav>
                     <Nav>
-                        <Nav.Link className="navlink-yappad" as={Link} to="/chamber">{navbarMessages.yappingChamber}</Nav.Link>
-                        <Nav.Link className="navlink-yappad" as={Link} to="/home">{navbarMessages.yap}</Nav.Link>
-                        <Nav.Link className="navlink-yappad" as={Link} to="/settings">{navbarMessages.settings}</Nav.Link>
-                        {isAdmin && <Nav.Link className="navlink-yappad" as={Link} to="/admin">{navbarMessages.admin}</Nav.Link>}
                         {isLoggedIn ? (
-                            <Nav.Link className="navlink-yappad" onClick={handleSignOut}>{navbarMessages.signOut}</Nav.Link>
+                            <>
+                                <Nav.Link className="navlink-yappad" as={Link} to="/home">{navbarMessages.yap}</Nav.Link>
+                                <Nav.Link className="navlink-yappad" as={Link} to="/chamber">{navbarMessages.yappingChamber}</Nav.Link>
+                                <Nav.Link className="navlink-yappad" as={Link} to="/settings">{navbarMessages.settings}</Nav.Link>
+                                {isAdmin && <Nav.Link className="navlink-yappad" as={Link} to="/admin">{navbarMessages.admin}</Nav.Link>}
+                                <Nav.Link className="navlink-yappad" onClick={handleSignOut}>{navbarMessages.signOut}</Nav.Link>
+                            </>
                         ) : (
                             <>
                                 <Nav.Link className="navlink-yappad" as={Link} to="/login">{navbarMessages.login}</Nav.Link>
