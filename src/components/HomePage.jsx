@@ -109,8 +109,6 @@ function HomePage() {
         <div className="homepage-container">
             <h1>{homePageMessages.welcome}</h1>
             <p className="how-it-works">{homePageMessages.howItWorks}</p>
-            <h1>{homePageMessages.welcome}</h1>
-            <p className="how-it-works">{homePageMessages.howItWorks}</p>
 
             <div className="api-calls-display">
                 {homePageMessages.apiCallsMade.replace("{apiCalls}", apiCalls)}
