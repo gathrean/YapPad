@@ -1,15 +1,14 @@
-// Backend Imports
+/// DISCLOSURE: the following JavaScript code has been created with the aid of 
+// Chat GPT 3.5 and edited by Group 6. 
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
-// Frontend Imports
 import { useAuth } from './AuthContext.jsx';
-
-// Style Imports
 import '../style/LoginPage.css';
 import '../App.css';
 import logo from '../assets/images/logo.png';
+import { loginPageMessages } from '../lang/messages/user'; 
 
 function LoginPage() {
     const [email, setEmail] = useState('');
@@ -18,6 +17,7 @@ function LoginPage() {
 
     const navigate = useNavigate();
     const { login, setIsAdmin } = useAuth();
+
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
@@ -29,21 +29,21 @@ function LoginPage() {
             console.log('Login successful: ', email);
             login({ ...user, token });
             if (user.isAdmin) {
-                setIsAdmin(true)
+                setIsAdmin(true);
             }
             navigate('/home');
         } catch (error) {
             console.error('Login failed:', error.response || error.request || error.message);
             if (error.response) {
                 if (error.response.status === 401) {
-                    setErrorMessage('Invalid email or password');
+                    setErrorMessage(loginPageMessages.invalidEmailPasswordError);
                 } else {
-                    setErrorMessage('An unexpected error occurred. Please try again later.');
+                    setErrorMessage(loginPageMessages.unexpectedError);
                 }
             } else if (error.request) {
-                setErrorMessage('Request was made, but no response from the server. Please check your internet connection.');
+                setErrorMessage(loginPageMessages.noResponseError);
             } else {
-                setErrorMessage('Something else happened in making the request... An unexpected error occurred. Please try again later.');
+                setErrorMessage(loginPageMessages.unknownError);
             }
         }
     };
@@ -54,9 +54,9 @@ function LoginPage() {
                 <div className="logo-container">
                     <img src={logo} alt="Logo" className="login-logo" />
                 </div>
-                <h2>Login</h2>
+                <h2>{loginPageMessages.loginHeading}</h2>
                 <div className="input-group">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">{loginPageMessages.emailLabel}</label>
                     <input
                         type="email"
                         id="email"
@@ -67,7 +67,7 @@ function LoginPage() {
                     />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">{loginPageMessages.passwordLabel}</label>
                     <input
                         type="password"
                         id="password"
@@ -78,8 +78,8 @@ function LoginPage() {
                     />
                 </div>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
-                <button type="submit" className="login-button">Login</button>
-                <Link to="/signup" className="signup-link">I don't have an account</Link>
+                <button type="submit" className="login-button">{loginPageMessages.loginButton}</button>
+                <Link to="/signup" className="signup-link">{loginPageMessages.signupLinkText}</Link>
             </form>
         </div>
     );
