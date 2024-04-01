@@ -50,14 +50,12 @@ h2 {
     margin-bottom: 20px;
     width: 100%;
     border-radius: 40px !important;
-    radius: 40px !important;
 }
 
 .input-group label {
     display: block;
     margin-bottom: 5px;
     color: #666;
-    radius: 40px !important;
     border-radius: 40px !important;
 
 }
