@@ -8,7 +8,8 @@ import { useAuth } from './AuthContext.jsx';
 import '../style/LoginPage.css';
 import '../App.css';
 import logo from '../assets/images/logo.png';
-import { loginPageMessages } from '../lang/messages/user'; 
+import { loginPageMessages } from '../lang/messages/user';
+import ForgotPasswordPage from './ForgotPasswordPage.jsx';
 import { API_BASE } from '../api_constants.js';
 
 function LoginPage() {
@@ -49,6 +50,10 @@ function LoginPage() {
         }
     };
 
+    const handleForgotPassword = () => {
+        navigate('/forgot-password'); // Navigate to the ForgotPasswordPage component
+    };
+
     return (
         <div className="login-container">
             <form onSubmit={handleLogin} className="login-form">
@@ -80,6 +85,7 @@ function LoginPage() {
                 </div>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
                 <button type="submit" className="login-button">{loginPageMessages.loginButton}</button>
+                <Link to="/forgot-password" className="forgot-password-link">Forgot Password?</Link>
                 <Link to="/signup" className="signup-link">{loginPageMessages.signupLinkText}</Link>
             </form>
         </div>
