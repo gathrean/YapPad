@@ -121,7 +121,7 @@ function HomePage() {
                         value={storyInput}
                         onChange={handleInputChange}
                     />
-                    <button type="submit" className="search-button">{homePageMessages.startYapping}</button>
+                    <button type="submit" className="button-general search-button">{homePageMessages.startYapping}</button>
                 </form>
             </div>
 
@@ -130,9 +130,9 @@ function HomePage() {
             </div>
 
             <div className="buttons">
-                <button className="button discard" onClick={handleDiscard}>{homePageMessages.discard}</button>
-                <button className="button save" onClick={handleSaveYap}>{homePageMessages.save}</button>
-                <button className="button yapping" onClick={handleKeepYapping}>{homePageMessages.keepYapping}</button>
+                <button className="button discard button-discard" onClick={handleDiscard}>{homePageMessages.discard}</button>
+                <button className="button save button-save" onClick={handleSaveYap}>{homePageMessages.save}</button>
+                <button className="button yapping button-general" onClick={handleKeepYapping}>{homePageMessages.keepYapping}</button>
             </div>
         </div>
     );

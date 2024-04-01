@@ -10,19 +10,16 @@ html, body {
     min-height: 100vh;
     text-align: center;
     padding: 40px 0; 
-    background: rgba(255, 214, 187, 0.8); 
+    /* background: rgba(255, 214, 187, 0.8);  */
     backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px); 
     border-radius: 20px; 
     margin: 20px; 
 }
 
-
 .search-input, .button, .search-button, .discard, .save, .yapping {
     border-radius: 25px; 
 }
-
-
 
 .search-container {
     margin-top: 20px;
@@ -30,16 +27,30 @@ html, body {
 
 .search-form {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 }
 
 .search-input {
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #ddd;
-    outline: none;
-    border-radius: 25px;
+    width: 80vw;
+    max-width: 500px;
+    margin-bottom: 20px;
+    /* width: 80%;  */
+
+    min-height: 100px; 
+
+    margin: 20px auto; 
+    background-color: rgba(255, 255, 255, 0.5); 
+    backdrop-filter: blur(5px); 
+    -webkit-backdrop-filter: blur(5px);
+    border: 2px solid #ddd; 
+    padding: 20px; 
+    overflow-y: auto; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+    color: #333; 
+    text-align: left;
+    border-radius: 8px; 
 }
 
 .search-button {
@@ -49,19 +60,11 @@ html, body {
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 25px;
-}
-
-.search-input:focus {
-    border-color: #ff2600;
-    border-radius: 25px;
 }
 
 .search-button:hover {
     background-color: #ff2600;
 }
-
-
 
 .yapStory {
     width: 80%; 
@@ -86,6 +89,18 @@ html, body {
     font-style: italic; 
 }
 
+.button-general {
+    background-color: #1c1c1c; 
+
+}
+
+.button-save {
+    background-color: #09814a; 
+}
+
+.button-discard {
+    background-color: #b7245c; 
+}
 
 .button, .search-button, .discard, .save, .yapping {
     background-color: #ff2600; 
