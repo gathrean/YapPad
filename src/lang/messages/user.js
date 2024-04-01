@@ -32,14 +32,14 @@ export const forgotPasswordMessages = {
 
 export const homePageMessages = {
   welcome: "Welcome to YapPad",
-  howItWorks: "How it works: Enter the start of whatever story you want and let YapPad finish the rest.",
+  howItWorks: "Enter the start of your story and let YapPad finish the rest.",
   apiCallsMade: "You have made {apiCalls}/20 Yap calls", // Note: {apiCalls} is a placeholder for dynamic data
   startTypingYourStory: "Start typing your story...",
   startYapping: "Start Yapping",
   yapStoryPlaceholder: "This is where your yap will be generated!",
   discard: "Discard",
   save: "Save",
-  keepYapping: "Keep Yapping",
+  keepYapping: "Continue",
   tooLong: "Yap too long dude! Pls try again.",
   enterYourInitialStory: "Enter your initial story first!",
   couldNotFindUniquePart: "Couldn't find a unique part to continue the story.",

@@ -24,13 +24,13 @@ function HomePage() {
             console.error('Error fetching API consumption:', error);
         }
     };
-      
-    
-    
+
+
+
 
     const handleInputChange = (event) => {
         setStoryInput(event.target.value);
-        if (error) setError(''); 
+        if (error) setError('');
     };
 
     const fetchStory = async (textToContinue) => {
@@ -44,7 +44,7 @@ function HomePage() {
             return '';
         }
     };
-    
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const newPartOfStory = await fetchStory(storyInput);
@@ -130,9 +130,11 @@ function HomePage() {
             </div>
 
             <div className="buttons">
+                <button className="button yapping" onClick={handleKeepYapping}>{homePageMessages.keepYapping}</button>
+            </div>
+            <div className="buttons">
                 <button className="button discard" onClick={handleDiscard}>{homePageMessages.discard}</button>
                 <button className="button save" onClick={handleSaveYap}>{homePageMessages.save}</button>
-                <button className="button yapping" onClick={handleKeepYapping}>{homePageMessages.keepYapping}</button>
             </div>
         </div>
     );
