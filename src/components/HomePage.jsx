@@ -112,7 +112,6 @@ function HomePage() {
 
             <div className="api-calls-display">
                 {homePageMessages.apiCallsMade.replace("{apiCalls}", apiCalls)}
-                {homePageMessages.apiCallsMade.replace("{apiCalls}", apiCalls)}
             </div>
 
 
