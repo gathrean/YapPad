@@ -4,13 +4,13 @@
 import React from 'react';
 import axios from 'axios';
 import '../style/Settings.css';
-import { settingsMessages } from '../lang/messages/user';
+import { settingsPageMessages } from '../lang/messages/user';
 
 function Settings() {
   return (
     <div className="homepage-container">
-      <h1>{settingsMessages.settings}</h1>
-      <p>{settingsMessages.settingsDescription}</p>
+      <h1>{settingsPageMessages.settings}</h1>
+      <p>{settingsPageMessages.settingsDescription}</p>
     </div>
   );
 }
