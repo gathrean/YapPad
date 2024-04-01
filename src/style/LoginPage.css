@@ -65,7 +65,7 @@ h2 {
 .input-group input {
     width: 100%;
     padding: 10px;
-    border: 2px solid #ff2600;
+    border: 2px solid #FF5108;
     border-radius: 40px;
     box-sizing: border-box;
     border-radius: 40px !important;
@@ -74,7 +74,7 @@ h2 {
 }
 
 .login-button {
-    background-color: #ff2600;
+    background-color: #FF5108;
     width: 100%;
     padding: 10px 20px;
     color: #fff;
@@ -87,7 +87,7 @@ h2 {
 }
 
 .login-button:hover {
-    background-color: #ff2600;
+    background-color: #FF5108;
     color: #fff;
 }
 
@@ -112,7 +112,7 @@ h2 {
 }
 
 .signup-link:hover {
-    color: #ff2600;
+    color: #FF5108;
 }
 
 @media (max-width: 500px) {

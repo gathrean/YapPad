@@ -56,14 +56,14 @@ html, body {
 .search-button {
     padding: 10px;
     font-size: 16px;
-    background-color: #ff2600;
+    background-color: #FF5108;
     color: white;
     border: none;
     cursor: pointer;
 }
 
 .search-button:hover {
-    background-color: #ff2600;
+    background-color: #FF5108;
 }
 
 .yapStory {
@@ -103,7 +103,7 @@ html, body {
 }
 
 .button, .search-button, .discard, .save, .yapping {
-    background-color: #ff2600; 
+    background-color: #FF5108; 
     color: white;
     border: 2px solid rgba(255, 255, 255, 0.5);
     padding: 10px 20px;
@@ -127,7 +127,7 @@ html, body {
     border: 1px solid rgba(255, 255, 255, 0.18); 
     margin-top: 20px; 
     font-weight: bold;
-    color: #ff2600; 
+    color: #FF5108; 
 }
 
 
@@ -139,7 +139,7 @@ html, body {
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.18); 
     margin: 20px 0; 
-    color: #ff2600; 
+    color: #FF5108; 
     font-size: 18px; 
     max-width: 80%; 
     text-align: center; 
