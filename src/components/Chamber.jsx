@@ -16,7 +16,7 @@ function Chamber() {
                 const response = await axios.get('http://localhost:8000/yaps/saved', { withCredentials: true });
                 setYaps(response.data);
             } catch (error) {
-                console.error(chamberMessages.fetchError, error); 
+                console.error(chamberMessages.fetchError, error);
             }
         };
 
@@ -24,7 +24,8 @@ function Chamber() {
     }, []);
 
     return (
-        <div className="yaps-grid">
+        <div className="homepage-container yaps-grid">
+            <h1>{chamberMessages.yappingChamber}</h1>
             {yaps.map((yap) => (
                 <Link key={yap._id} to={`/chamber/${yap._id}`} className="yap-title">
                     {yap.title}

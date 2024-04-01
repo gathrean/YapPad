@@ -9,6 +9,7 @@ export const adminPageMessages = {
 
   export const chamberMessages = {
     fetchError: "Error fetching yaps:",
+    yappingChamber: "Yapping Chamber",
   };
 
   export const footerMessages = {
