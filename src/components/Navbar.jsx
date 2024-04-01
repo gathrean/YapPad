@@ -10,7 +10,9 @@ import axios from 'axios';
 import { useAuth } from './AuthContext.jsx';
 import { navbarMessages } from '../lang/messages/user';
 
-// Bootstrap Imports
+// Bootstrap Imports / Frontend
+import YapPadLogo from '../assets/images/yappad-logo.png';
+import "../style/Navbar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -31,28 +33,36 @@ function YapPadNavbar() {
     };
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+        <Navbar collapseOnSelect expand="lg" className="navbar-yappad">
             <Container>
-                <Navbar.Brand as={Link} to="/">YapPad</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/" className="brand-yappad">
+                    <img
+                        src={YapPadLogo}
+                        width="30"
+                        height="30"
+                        className="d-inline-block align-top"
+                        alt="YapPad Logo"
+                    />
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         {isLoggedIn && (
                             <>
-                                <Nav.Link as={Link} to="/chamber">{navbarMessages.yappingChamber}</Nav.Link>
-                                <Nav.Link as={Link} to="/home">{navbarMessages.yap}</Nav.Link>
-                                <Nav.Link as={Link} to="/settings">{navbarMessages.settings}</Nav.Link>
-                                {isAdmin && <Nav.Link as={Link} to="/admin">{navbarMessages.admin}</Nav.Link>}
+                                <Nav.Link className="navlink-yapped" as={Link} to="/chamber">{navbarMessages.yappingChamber}</Nav.Link>
+                                <Nav.Link className="navlink-yapped" as={Link} to="/home">{navbarMessages.yap}</Nav.Link>
+                                <Nav.Link className="navlink-yapped" as={Link} to="/settings">{navbarMessages.settings}</Nav.Link>
+                                {isAdmin && <Nav.Link className="navlink-yapped" as={Link} to="/admin">{navbarMessages.admin}</Nav.Link>}
                             </>
                         )}
                     </Nav>
                     <Nav>
                         {isLoggedIn ? (
-                            <Nav.Link onClick={handleSignOut}>{navbarMessages.signOut}</Nav.Link>
+                            <Nav.Link className="navlink-yapped" onClick={handleSignOut}>{navbarMessages.signOut}</Nav.Link>
                         ) : (
                             <>
-                                <Nav.Link as={Link} to="/login">{navbarMessages.login}</Nav.Link>
-                                <Nav.Link as={Link} to="/signup">{navbarMessages.getStarted}</Nav.Link>
+                                <Nav.Link className="navlink-yapped" as={Link} to="/login">{navbarMessages.login}</Nav.Link>
+                                <Nav.Link className="navlink-yapped" as={Link} to="/signup">{navbarMessages.getStarted}</Nav.Link>
                             </>
                         )}
                     </Nav>

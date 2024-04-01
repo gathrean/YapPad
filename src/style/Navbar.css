@@ -1,4 +1,26 @@
-.navbar-custom .navbar-nav {
+.navbar.navbar-custom .navbar-nav {
     align-items: center;
     justify-content: center;
+}
+
+.navbar.navbar-yappad {
+    background-color: #FF5108;
+    color: white;
+}
+
+.brand-yappad {
+    color: white !important;
+    font-weight: bolder !important;
+}
+
+.navlink-yapped {
+    color: white !important;
+}
+
+.navlink-yapped:hover {
+    text-decoration: underline;
+}
+
+.button.navbar-toggler:hover {
+    background-color: white !important;
 }
