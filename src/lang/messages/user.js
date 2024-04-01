@@ -15,7 +15,7 @@ export const chamberMessages = {
 
 export const settingsPageMessages = {
   pageTitle: "Settings",
-  comingSoon: "Coming soon",
+  comingSoon: "Coming soon!",
 };
 
 export const footerMessages = {
