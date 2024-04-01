@@ -56,7 +56,7 @@ export const adminPageMessages = {
   export const navbarMessages = {
     brand: "YapPad",
     toggleNavigation: "Toggle navigation",
-    yappingChamber: "Yapping Chamber",
+    yappingChamber: "Chamber",
     yap: "Yap",
     settings: "Settings",
     admin: "Admin",
