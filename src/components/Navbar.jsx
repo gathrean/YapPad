@@ -31,11 +31,13 @@ function YapPadNavbar() {
             console.error('Error signing out:', error);
         }
     };
+    // Conditionally set the 'to' prop of Navbar.Brand
+    const brandLink = isLoggedIn ? '/home' : '/';
 
     return (
         <Navbar collapseOnSelect expand="lg" className="navbar-yappad">
             <Container>
-                <Navbar.Brand as={Link} to="/" className="brand-yappad">
+                <Navbar.Brand as={Link} to={brandLink} className="brand-yappad">
                     <img
                         src={YapPadLogo}
                         width="30"
