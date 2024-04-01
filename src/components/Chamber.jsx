@@ -26,6 +26,7 @@ function Chamber() {
     return (
         <div className="homepage-container yaps-grid">
             <h1>{chamberMessages.yappingChamber}</h1>
+            <p>{chamberMessages.comingSoon}</p>
             {yaps.map((yap) => (
                 <Link key={yap._id} to={`/chamber/${yap._id}`} className="yap-title">
                     {yap.title}
