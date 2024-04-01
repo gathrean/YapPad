@@ -1,9 +1,12 @@
 // Backend Imports
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 // Frontend Imports
+import { useAuth } from './AuthContext.jsx';
+
+// Style Imports
 import '../style/LoginPage.css';
 import '../App.css';
 import logo from '../assets/images/logo.png';
@@ -13,14 +16,22 @@ function LoginPage() {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
+    const navigate = useNavigate();
+    const { login, setIsAdmin } = useAuth();
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
             const response = await axios.post('http://localhost:8000/auth/login', {
-                email: email,
-                password: password
+                email,
+                password,
             });
+            const { user, token } = response.data;
             console.log('Login successful: ', email);
+            login({ ...user, token });
+            if (user.isAdmin) {
+                setIsAdmin(true)
+            }
+            navigate('/home');
         } catch (error) {
             console.error('Login failed:', error.response || error.request || error.message);
             if (error.response) {
