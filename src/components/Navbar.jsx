@@ -46,17 +46,12 @@ function YapPadNavbar() {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
-                        {isLoggedIn && (
-                            <>
-                                <Nav.Link className="navlink-yapped" as={Link} to="/chamber">{navbarMessages.yappingChamber}</Nav.Link>
-                                <Nav.Link className="navlink-yapped" as={Link} to="/home">{navbarMessages.yap}</Nav.Link>
-                                <Nav.Link className="navlink-yapped" as={Link} to="/settings">{navbarMessages.settings}</Nav.Link>
-                                {isAdmin && <Nav.Link className="navlink-yapped" as={Link} to="/admin">{navbarMessages.admin}</Nav.Link>}
-                            </>
-                        )}
-                    </Nav>
+                    <Nav className="me-auto"></Nav>
                     <Nav>
+                        <Nav.Link className="navlink-yapped" as={Link} to="/chamber">{navbarMessages.yappingChamber}</Nav.Link>
+                        <Nav.Link className="navlink-yapped" as={Link} to="/home">{navbarMessages.yap}</Nav.Link>
+                        <Nav.Link className="navlink-yapped" as={Link} to="/settings">{navbarMessages.settings}</Nav.Link>
+                        {isAdmin && <Nav.Link className="navlink-yapped" as={Link} to="/admin">{navbarMessages.admin}</Nav.Link>}
                         {isLoggedIn ? (
                             <Nav.Link className="navlink-yapped" onClick={handleSignOut}>{navbarMessages.signOut}</Nav.Link>
                         ) : (
