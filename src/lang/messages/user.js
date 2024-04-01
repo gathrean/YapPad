@@ -10,7 +10,7 @@ export const adminPageMessages = {
 export const chamberMessages = {
   fetchError: "Error fetching yaps:",
   yappingChamber: "Yapping Chamber",
-  comingSoon: "Coming soon"
+  comingSoon: "Coming soon!!"
 };
 
 export const settingsPageMessages = {
