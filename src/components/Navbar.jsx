@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 // Context Imports
-import { useAuth } from './AuthContext.jsx';
+import { useAuth } from '../authentication/AuthContext.jsx';
 import { navbarMessages } from '../lang/messages/user';
 
 // Bootstrap Imports / Frontend

@@ -7,7 +7,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "../components/AuthContext";
+import { useAuth } from "./AuthContext";
 import { signupPageMessages } from "../lang/messages/user"; 
 
 import "../style/SignupPage.css";
