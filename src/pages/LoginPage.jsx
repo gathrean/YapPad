@@ -4,11 +4,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useAuth } from './AuthContext.jsx';
+import { useAuth } from '../components/AuthContext.jsx';
 import '../style/LoginPage.css';
 import '../App.css';
 import logo from '../assets/images/logo.png';
-import { loginPageMessages } from '../lang/messages/user';
+import { loginPageMessages } from '../lang/messages/user.js';
 import ForgotPasswordPage from './ForgotPasswordPage.jsx';
 import { API_BASE } from '../api_constants.js';
 
