@@ -1,20 +1,22 @@
-/// DISCLOSURE: the following JavaScript code has been created with the aid of 
+// DISCLOSURE: the following JavaScript code has been created with the aid of 
 // Chat GPT 3.5 and edited by Group 6. 
 
-// Backend Imports
+// React and Libraries
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
-// Context Imports
-import { useAuth } from './AuthContext.jsx';
+// Contexts
+import { useAuth } from '../authentication/AuthContext.jsx';
 import { navbarMessages } from '../lang/messages/user';
+import { API_BASE } from '../api_constants.js';
 
-// Bootstrap Imports / Frontend
-import YapPadLogo from '../assets/images/yappad-logo.png';
+// CSS and Assets
 import "../style/Navbar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { API_BASE } from '../api_constants.js';
+import YapPadLogo from '../assets/images/yappad-logo.png';
+
+// React Bootstrap Components
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';

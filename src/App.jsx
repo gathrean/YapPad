@@ -1,31 +1,30 @@
-// Backend Imports
+// React and Libraries
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
+axios.defaults.withCredentials = true
 
-// Frontend Imports
+// CSS and Assets
 import './App.css';
 
 // Page Imports
-import LandingPage from './components/LandingPage';
-import LoginPage from './components/LoginPage';
-import SignupPage from './components/SignupPage';
-import HomePage from './components/HomePage';
-import Chamber from './components/Chamber';
-import YapDetail from './components/YapDetail';
-import AdminPage from './components/AdminPage';
-import SettingsPage from './components/SettingsPage';
+import AdminPage from './pages/AdminPage.jsx';
+import ChamberPage from './pages/ChamberPage.jsx';
+import HomePage from './pages/HomePage.jsx';
+import LandingPage from './pages/LandingPage.jsx';
+import SettingsPage from './pages/SettingsPage.jsx';
 
 // Component Imports
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import YapDetail from './components/YapDetail.jsx';
 
 // User Authentication Imports
-import { AuthProvider } from './components/AuthContext.jsx';
-import ResetPasswordPage from './components/ResetPasswordPage.jsx';
-import ForgotPasswordPage from './components/ForgotPasswordPage.jsx';
-
-axios.defaults.withCredentials = true
+import { AuthProvider } from './authentication/AuthContext.jsx';
+import LoginPage from './authentication/LoginPage.jsx';
+import SignupPage from './authentication/SignupPage.jsx';
+import ResetPasswordPage from './authentication/ResetPasswordPage.jsx';
+import ForgotPasswordPage from './authentication/ForgotPasswordPage.jsx';
 
 function App() {
   return (
@@ -33,14 +32,19 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
+          {/* Pages */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/chamber" element={<ChamberPage />} />
+          <Route path="/chamber/:id" element={<YapDetail />} />
+
+          {/* Admin Page */}
+          <Route path="/admin" element={<AdminPage />} />
+
+          {/* User Authentication */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="/chamber" element={<Chamber />} />
-          <Route path="/chamber/:id" element={<YapDetail />} />
-          <Route path="/settings" element={<SettingsPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />}></Route>
           <Route path="/reset-password" element={<ResetPasswordPage />}></Route>
         </Routes>

@@ -1,15 +1,21 @@
 /// DISCLOSURE: the following JavaScript code has been created with the aid of 
 // Chat GPT 3.5 and edited by Group 6. 
 
+// React and Libraries
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
+// Contexts
 import { useAuth } from './AuthContext.jsx';
+import { loginPageMessages } from '../lang/messages/user.js';
+
+// CSS and Assets
 import '../style/LoginPage.css';
 import '../App.css';
 import logo from '../assets/images/logo.png';
-import { loginPageMessages } from '../lang/messages/user';
-import ForgotPasswordPage from './ForgotPasswordPage.jsx';
+
+// API
 import { API_BASE } from '../api_constants.js';
 
 function LoginPage() {

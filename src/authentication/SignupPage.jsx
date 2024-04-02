@@ -1,18 +1,21 @@
-/// DISCLOSURE: the following JavaScript code has been created with the aid of 
+// DISCLOSURE: the following JavaScript code has been created with the aid of 
 // Chat GPT 3.5 and edited by Group 6. 
 
-/// DISCLOSURE: the following JavaScript code has been created with the aid of 
-// Chat GPT 3.5 and edited by Group 6. 
-
+// React and Libraries
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "./AuthContext";
-import { signupPageMessages } from "../lang/messages/user"; 
 
+// Contexts
+import { useAuth } from "./AuthContext";
+import { signupPageMessages } from "../lang/messages/user";
+
+// CSS and Assets
 import "../style/SignupPage.css";
 import "../App.css";
 import logo from "../assets/images/logo.png";
+
+// API
 import { API_BASE } from "../api_constants";
 
 function SignupPage() {

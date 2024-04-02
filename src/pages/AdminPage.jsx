@@ -1,11 +1,16 @@
-/// DISCLOSURE: the following JavaScript code has been created with the aid of 
+// DISCLOSURE: the following JavaScript code has been created with the aid of 
 // Chat GPT 3.5 and edited by Group 6. 
 
-import { useEffect, useState } from "react";
+// React and Libraries
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "../style/AdminPage.module.css";
+
+// Contexts
 import { adminPageMessages } from "../lang/messages/user";
+
+// CSS and Assets
 import { API_BASE } from "../api_constants";
+import styles from "../style/AdminPage.module.css";
 
 export default function AdminPage() {
   let [users, setUsers] = useState([]);

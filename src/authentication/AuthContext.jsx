@@ -1,6 +1,7 @@
-/// DISCLOSURE: the following JavaScript code has been created with the aid of 
+// DISCLOSURE: the following JavaScript code has been created with the aid of 
 // Chat GPT 3.5 and edited by Group 6. 
 
+// React Imports
 import React, { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext();

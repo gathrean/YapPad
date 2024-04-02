@@ -1,13 +1,21 @@
 /// DISCLOSURE: the following JavaScript code has been created with the aid of 
 // Chat GPT 3.5 and edited by Group 6. 
 
+// Client Imports
+// React and Libraries
+import { useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
+import axios from 'axios';
+
+// Contexts
+import { resetPasswordPageMessages } from '../lang/messages/user'; 
+
+// CSS and Assets
+import logo from '../assets/images/logo.png';
 import '../style/LoginPage.css';
 import '../App.css';
-import logo from '../assets/images/logo.png';
-import { useState } from 'react';
-import axios from 'axios';
-import { resetPasswordPageMessages } from '../lang/messages/user'; 
+
+// API
 import { API_BASE } from '../api_constants';
 
 export default function ResetPasswordPage() {

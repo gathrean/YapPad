@@ -1,9 +1,13 @@
-/// DISCLOSURE: the following JavaScript code has been created with the aid of 
+// DISCLOSURE: the following JavaScript code has been created with the aid of 
 // Chat GPT 3.5 and edited by Group 6. 
 
+// React and Libraries
 import React from 'react';
-import axios from 'axios';
+
+// CSS and Assets
 import '../style/Settings.css';
+
+// Contexts
 import { settingsPageMessages } from '../lang/messages/user';
 
 function Settings() {
