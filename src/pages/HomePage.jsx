@@ -1,10 +1,17 @@
-/// DISCLOSURE: the following JavaScript code has been created with the aid of 
+// DISCLOSURE: the following JavaScript code has been created with the aid of 
 // Chat GPT 3.5 and edited by Group 6. 
 
+// React and Libraries
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
+// CSS and Assets
 import '../style/Home.css';
+
+// Contexts
 import { homePageMessages } from '../lang/messages/user';
+
+// API
 import { API_BASE, LLM_API_BASE } from '../api_constants';
 
 function HomePage() {

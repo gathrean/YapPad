@@ -1,13 +1,19 @@
-/// DISCLOSURE: the following JavaScript code has been created with the aid of 
+// DISCLOSURE: the following JavaScript code has been created with the aid of 
 // Chat GPT 3.5 and edited by Group 6. 
 
+// React and Libraries
 import { useState } from 'react';
 import axios from 'axios';
 
+// Contexts
+import { forgotPasswordMessages } from '../lang/messages/user'; 
+
+// CSS and Assets
 import '../style/LoginPage.css';
 import '../App.css';
 import logo from '../assets/images/logo.png';
-import { forgotPasswordMessages } from '../lang/messages/user'; 
+
+// API
 import { API_BASE } from '../api_constants';
 
 export default function ForgotPasswordPage() {
