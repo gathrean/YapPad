@@ -8,7 +8,7 @@ import './App.css';
 
 // Page Imports
 import AdminPage from './pages/AdminPage.jsx';
-import ChamberPage from './pages/Chamber.jsx';
+import ChamberPage from './pages/ChamberPage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import SettingsPage from './pages/SettingsPage.jsx';
