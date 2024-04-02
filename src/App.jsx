@@ -1,9 +1,10 @@
-// Backend Imports
+// React and Libraries
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
+axios.defaults.withCredentials = true
 
-// Frontend Imports
+// CSS and Assets
 import './App.css';
 
 // Page Imports
@@ -24,8 +25,6 @@ import LoginPage from './authentication/LoginPage.jsx';
 import SignupPage from './authentication/SignupPage.jsx';
 import ResetPasswordPage from './authentication/ResetPasswordPage.jsx';
 import ForgotPasswordPage from './authentication/ForgotPasswordPage.jsx';
-
-axios.defaults.withCredentials = true
 
 function App() {
   return (
