@@ -1,0 +1,86 @@
+swagger: "2.0"
+info:
+  title: YapPad API
+  description: YapPad API allows users to generate stories based on genre and prompts.
+  version: 1.0.0
+servers:
+  - url: https://yappad.vercel.app
+paths:
+  /API/v1/docs:
+    get:
+      summary: Get Swagger documentation
+      description: Retrieve the Swagger documentation for this API.
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            text/html:
+              schema:
+                type: string
+                example: |
+                  <!DOCTYPE html>
+                  <html>
+                  <head>
+                    <title>Swagger UI</title>
+                    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.6/swagger-ui.css">
+                  </head>
+                  <body>
+                    <div id="swagger-ui"></div>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.6/swagger-ui-bundle.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.6/swagger-ui-standalone-preset.js"></script>
+                    <script>
+                      window.onload = function() {
+                        SwaggerUIBundle({
+                          url: "/API/v1/swagger.json",
+                          dom_id: '#swagger-ui',
+                          deepLinking: true,
+                          presets: [
+                            SwaggerUIBundle.presets.apis,
+                            SwaggerUIStandalonePreset
+                          ],
+                          layout: "BaseLayout",
+                          plugins: [
+                            SwaggerUIBundle.plugins.DownloadUrl
+                          ],
+                          operationsSorter: "alpha"
+                        })
+                      }
+                    </script>
+                  </body>
+                  </html>
+
+  /stories/{genre}:
+    get:
+      summary: Get stories by genre
+      description: Retrieve a list of stories based on the provided genre.
+      parameters:
+        - in: path
+          name: genre
+          required: true
+          description: The genre of stories to retrieve.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Story"
+
+components:
+  schemas:
+    Story:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the story.
+        title:
+          type: string
+          description: The title of the story.
+        content:
+          type: string
+          description: The content of the story.
