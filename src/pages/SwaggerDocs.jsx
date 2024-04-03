@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SwaggerUI from 'swagger-ui-react';
 import 'swagger-ui-react/swagger-ui.css';
+import jsonData from '../docs/swaggerData.json';
 
 function SwaggerDocs() {
-  useEffect(() => {
-    // Optional: Perform any additional initialization here
-  }, []);
-
-  return <SwaggerUI url="/API/v1/swagger.json" />;
+  return <SwaggerUI spec={jsonData} />;
 }
 
 export default SwaggerDocs;
