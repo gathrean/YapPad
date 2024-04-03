@@ -69,7 +69,7 @@ h2 {
     border-radius: 40px !important;
 }
 
-.login-button {
+.landing-button {
     background-color: #FF5108;
     width: 100%;
     padding: 10px 20px;
@@ -79,12 +79,26 @@ h2 {
     font-size: 16px;
     cursor: pointer;
     transition: transform 0.2s; 
-    margin: 5px 10px;
+    margin: 5px 0;
 }
 
-.login-button:hover {
+.landing-button:hover {
     background-color: #FF5108;
     color: #fff;
+}
+
+.landing-button.docs {
+    background-color: #707070;
+    width: 100%;
+    padding: 10px 20px;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s; 
+    margin: 5px 0;
+
 }
 
 .signup-redirect {

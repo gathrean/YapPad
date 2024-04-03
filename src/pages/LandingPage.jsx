@@ -21,16 +21,21 @@ function LandingPage() {
     navigate('/signup');
   };
 
+  const handleDocsClick = () => {
+    navigate('/API/v1/docs');
+  }
+
   return (
     <div className="main-container">
       <div className="content-container">
         <div className="logo-container">
           <img src={logo} alt="Logo" className="logo" />
         </div>
-        <h1>Welcome to YapPad</h1> 
+        <h1>Welcome to YapPad</h1>
         <div className="button-container">
-          <button className="login-button" onClick={handleLoginClick}>Login</button>
-          <button className="login-button" onClick={handleSignupClick}>Get Started</button>
+          <button className="landing-button" onClick={handleLoginClick}>Login</button>
+          <button className="landing-button" onClick={handleSignupClick}>Get Started</button>
+          <button className="landing-button docs" onClick={handleDocsClick}>View API Docs</button>
         </div>
       </div>
     </div>
