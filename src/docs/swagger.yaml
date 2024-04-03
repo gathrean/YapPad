@@ -1,6 +1,6 @@
-swagger: "2.0"
+openapi: 3.1.0
 info:
-  title: YapPad API
+  title: YapPad
   description: YapPad API allows users to generate stories based on genre and prompts.
   version: 1.0.0
 servers:
@@ -30,8 +30,8 @@ paths:
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.6/swagger-ui-standalone-preset.js"></script>
                     <script>
                       window.onload = function() {
-                        SwaggerUIBundle({
-                          url: "/API/v1/swagger.json",
+                        const ui = SwaggerUIBundle({
+                          url: "/API/v1/swagger.yaml", // Specify the correct path to your swagger.yaml file
                           dom_id: '#swagger-ui',
                           deepLinking: true,
                           presets: [
@@ -48,39 +48,3 @@ paths:
                     </script>
                   </body>
                   </html>
-
-  /stories/{genre}:
-    get:
-      summary: Get stories by genre
-      description: Retrieve a list of stories based on the provided genre.
-      parameters:
-        - in: path
-          name: genre
-          required: true
-          description: The genre of stories to retrieve.
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Story"
-
-components:
-  schemas:
-    Story:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the story.
-        title:
-          type: string
-          description: The title of the story.
-        content:
-          type: string
-          description: The content of the story.
