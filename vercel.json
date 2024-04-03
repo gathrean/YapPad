@@ -3,16 +3,14 @@
     {
       "source": "/(.*)",
       "destination": "/"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/docs/swagger.json",
-      "dest": "/src/docs/swagger.json"
     },
     {
-      "src": "/docs/(.*)",
-      "dest": "/src/docs/$1"
+      "source": "/docs/swagger.json",
+      "destination": "/src/docs/swagger.json"
+    },
+    {
+      "source": "/docs/(.*)",
+      "destination": "/src/docs/$1"
     }
   ]
 }
