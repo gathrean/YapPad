@@ -4,5 +4,15 @@
       "source": "/(.*)",
       "destination": "/"
     }
+  ],
+  "routes": [
+    {
+      "src": "/docs/swagger.json",
+      "dest": "/src/docs/swagger.json"
+    },
+    {
+      "src": "/docs/(.*)",
+      "dest": "/src/docs/$1"
+    }
   ]
 }
