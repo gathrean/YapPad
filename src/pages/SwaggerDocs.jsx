@@ -7,7 +7,7 @@ function SwaggerDocs() {
     // Optional: Perform any additional initialization here
   }, []);
 
-  return <SwaggerUI url="/API/v1/swagger.yaml" />;
+  return <SwaggerUI url="/API/v1/swagger.json" />;
 }
 
 export default SwaggerDocs;
