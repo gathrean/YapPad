@@ -40,6 +40,7 @@ function App() {
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/chamber" element={<ChamberPage />} />
           <Route path="/chamber/:id" element={<YapDetail />} />
+          <Route path="/swagger" element={<SwaggerDocs />} />
           <Route path="/API/v1/docs" element={<SwaggerDocs />} />
 
           {/* Admin Page */}
