@@ -2,12 +2,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
-axios.defaults.withCredentials = true
+axios.defaults.withCredentials = true;
 
 // CSS and Assets
 import './App.css';
 
 // Page Imports
+import NotFound from './pages/404Page.jsx';
 import AdminPage from './pages/AdminPage.jsx';
 import ChamberPage from './pages/ChamberPage.jsx';
 import HomePage from './pages/HomePage.jsx';
@@ -45,12 +46,16 @@ function App() {
           {/* User Authentication */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/forgot-password" element={<ForgotPasswordPage />}></Route>
-          <Route path="/reset-password" element={<ResetPasswordPage />}></Route>
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+          {/* 404 Page */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </Router>
     </AuthProvider>
   );
 }
+
 export default App;
