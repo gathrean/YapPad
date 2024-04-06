@@ -32,9 +32,9 @@ function HomePage() {
             console.error('Error fetching API consumption:', error);
         }
     };
-      
-    
-    
+
+
+
 
     const handleInputChange = (event) => {
         setStoryInput(event.target.value);
@@ -43,7 +43,11 @@ function HomePage() {
 
     const fetchStory = async (textToContinue) => {
         try {
-            const response = await axios.get(`${LLM_API_BASE}/gen/${encodeURIComponent(textToContinue)}`, { withCredentials: false });
+            const response = await axios.post(`${API_BASE}/yaps/yap`, {
+                withCredentials: true, data: {
+                    text: textToContinue
+                }
+            });
             setError('');
             return response.data[0].generated_text;
         } catch (error) {
