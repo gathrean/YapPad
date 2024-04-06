@@ -12,7 +12,7 @@ import '../style/Home.css';
 import { homePageMessages } from '../lang/messages/user';
 
 // API
-import { API_BASE, LLM_API_BASE } from '../api_constants';
+import { API_BASE } from '../api_constants';
 
 function HomePage() {
     const [storyInput, setStoryInput] = useState('');
