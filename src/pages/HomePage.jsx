@@ -67,35 +67,14 @@ function HomePage() {
             setError(homePageMessages.enterYourInitialStory);
             return;
         }
-        // let promptText = extractUniqueSnippet(continuedStory);
-        // if (!promptText) {
-        //     setError(homePageMessages.couldNotFindUniquePart);
-        //     return;
-        // }
-        console.log(continuedStory)
+
         const newPartOfStory = await fetchStory(continuedStory);
-        console.log(newPartOfStory)
         setContinuedStory(newPartOfStory);
     };
 
     const handleDiscard = () => {
         setContinuedStory('');
     };
-
-    function extractUniqueSnippet(story) {
-        const sentences = story.match(/[^\.!\?]+[\.!\?]+/g);
-        if (!sentences || sentences.length === 0) {
-            return '';
-        }
-
-        for (let i = sentences.length - 1; i > 0; i--) {
-            if (sentences[i] !== sentences[i - 1]) {
-                return sentences[i].trim();
-            }
-        }
-
-        return sentences[sentences.length - 1].trim();
-    }
 
     const handleSaveYap = async () => {
         try {
