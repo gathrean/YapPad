@@ -10,15 +10,25 @@ import '../style/Home.css';
 
 // Contexts
 import { homePageMessages } from '../lang/messages/user';
+import { useAuth } from '../authentication/AuthContext';
 
 // API
 import { API_BASE } from '../api_constants';
+import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
+    const { isLoggedIn } = useAuth()
+    const navigate = useNavigate()
     const [storyInput, setStoryInput] = useState('');
     const [continuedStory, setContinuedStory] = useState('');
     const [error, setError] = useState('');
     const [apiCalls, setApiCalls] = useState(0);
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate("/")
+        }
+    })
 
     useEffect(() => {
         fetchApiConsumption();
