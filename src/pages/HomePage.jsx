@@ -33,9 +33,6 @@ function HomePage() {
         }
     };
 
-
-
-
     const handleInputChange = (event) => {
         setStoryInput(event.target.value);
         if (error) setError('');
@@ -70,13 +67,15 @@ function HomePage() {
             setError(homePageMessages.enterYourInitialStory);
             return;
         }
-        let promptText = extractUniqueSnippet(continuedStory);
-        if (!promptText) {
-            setError(homePageMessages.couldNotFindUniquePart);
-            return;
-        }
-        const newPartOfStory = await fetchStory(promptText);
-        setContinuedStory(prevStory => prevStory + " " + newPartOfStory);
+        // let promptText = extractUniqueSnippet(continuedStory);
+        // if (!promptText) {
+        //     setError(homePageMessages.couldNotFindUniquePart);
+        //     return;
+        // }
+        console.log(continuedStory)
+        const newPartOfStory = await fetchStory(continuedStory);
+        console.log(newPartOfStory)
+        setContinuedStory(newPartOfStory);
     };
 
     const handleDiscard = () => {
