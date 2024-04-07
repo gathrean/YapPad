@@ -62,7 +62,7 @@ function Chamber() {
         try {
             const url = `${API_BASE}/yaps/update/${id}`;
             await axios.put(url, editFormData, { withCredentials: true });
-    
+
             const updatedYaps = yaps.map(yap => yap._id === id ? { ...yap, ...editFormData } : yap);
             setYaps(updatedYaps);
             setEditingId(null); // leave editing mode
@@ -70,7 +70,7 @@ function Chamber() {
             console.error('Failed to update Yap:', error);
         }
     };
-    
+
 
     return (
         <div className="homepage-container yaps-grid">
