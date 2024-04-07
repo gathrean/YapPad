@@ -16,6 +16,7 @@ export default function AdminPage() {
   let [users, setUsers] = useState([]);
   let [endpointStats, setEndpointStats] = useState([]);
   let [loading, setLoading] = useState(true);
+  let [userStats, setUserStats] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -23,11 +24,15 @@ export default function AdminPage() {
       setLoading(false);
       setUsers(ret.data);
 
-      // Fetching endpoint usage stats
+      // fetching endpoint usage stats
       const endpointStatsRes = await axios.get(`${API_BASE}/admin/api-usage-stats`);
       setEndpointStats(endpointStatsRes.data);
-
       setLoading(false);
+
+      // fetching endpoint individual user stats
+      const { data } = await axios.get(`${API_BASE}/admin/api-usage-stats-per-user`, { withCredentials: true });
+        setUserStats(data);
+        setLoading(false);
     }
 
     fetchData();
@@ -49,6 +54,8 @@ export default function AdminPage() {
   return (
     <div className={styles.root}>
       <div className={styles.main}>
+      <h2 style={{marginTop: "40px"}}>YapPad Model Service Consumption per User</h2>
+<br></br><br></br>
         <table className={styles.table}>
           <thead>
             <tr>
@@ -67,10 +74,33 @@ export default function AdminPage() {
             ))}
           </tbody>
         </table>
+        <br></br>  <br></br>  <br></br> 
 
-
+    {/* Endpoint Usage Stats Per Individual User Table */}
+      <h2 style={{marginTop: "40px"}}>API Usage Stats Per User</h2>
+      <br></br>  <br></br>
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Total # Requests</th>
+          </tr>
+        </thead>
+        <tbody>
+          {userStats.map((userStat) => (
+            <tr key={userStat.email}>
+              <td>{userStat.username}</td>
+              <td>{userStat.email}</td>
+              <td>{userStat.totalRequests}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <br></br><br></br><br></br>
        {/* Endpoint Usage Stats Table */}
        <h2 style={{marginTop: "40px"}}>Endpoint Usage Stats</h2>
+       <br></br><br></br>
         <table className={styles.table}>
           <thead>
             <tr>
@@ -89,7 +119,10 @@ export default function AdminPage() {
             ))}
           </tbody>
         </table>
+        <br></br><br></br><br></br>
       </div>
     </div>
+    
   );
+  
 }
