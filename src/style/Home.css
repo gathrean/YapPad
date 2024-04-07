@@ -79,14 +79,15 @@ body {
 .yapStory {
     width: 80vw;
     max-width: 500px;
-    min-height: 150px;
+    /* min-height: 150px; */
+    /* height: max-content; */
     margin: 20px auto;
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 2px solid #ddd;
     padding: 20px;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
     color: #333;
@@ -208,4 +209,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.continued-story {
+    color: #ff5108;
 }
