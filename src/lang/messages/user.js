@@ -10,7 +10,7 @@ export const adminPageMessages = {
 export const chamberMessages = {
   fetchError: "Error fetching yaps:",
   yappingChamber: "Yapping Chamber",
-  comingSoon: "Coming soon!!"
+  comingSoon: "Coming soon!!",
 };
 
 export const settingsPageMessages = {
@@ -36,7 +36,8 @@ export const homePageMessages = {
   apiCallsMade: "You have made {apiCalls}/20 Yap calls", // Note: {apiCalls} is a placeholder for dynamic data
   startTypingYourStory: "Start typing your story...",
   startYapping: "Start Yapping",
-  yapStoryPlaceholder: "This is where your yap will be generated! (Might take a few seconds after clicking 'Start Yapping')",
+  yapStoryPlaceholder:
+    "This is where your yap will be generated! (Might take a few seconds after clicking 'Start Yapping')",
   discard: "Discard",
   save: "Save",
   keepYapping: "Continue",
@@ -44,8 +45,11 @@ export const homePageMessages = {
   enterYourInitialStory: "Enter your initial story first!",
   couldNotFindUniquePart: "Couldn't find a unique part to continue the story.",
   yapTooLong: "Yap too long dude! Pls try again.",
-  yapSavedSuccessfully: "Yap saved successfully!",
-  failedToSaveYap: "Failed to save the yap. Please try again."
+  yapSavedSuccessfully: "Yap has been successfully saved to your Chamber!",
+  closeModal: "Sweet",
+  failedToSaveYap: "Failed to save the yap. Please try again.",
+  emptyYap: "You can't save an empty yap. Please yap something!",
+  startYappingFirst: "Click Start Yapping to get your story started first!",
 };
 
 export const loginPageMessages = {
@@ -56,8 +60,10 @@ export const loginPageMessages = {
   signupLinkText: "I don't have an account",
   invalidEmailPasswordError: "Invalid email or password",
   unexpectedError: "An unexpected error occurred. Please try again later.",
-  noResponseError: "Request was made, but no response from the server. Please check your internet connection.",
-  unknownError: "Something else happened in making the request... An unexpected error occurred. Please try again later."
+  noResponseError:
+    "Request was made, but no response from the server. Please check your internet connection.",
+  unknownError:
+    "Something else happened in making the request... An unexpected error occurred. Please try again later.",
 };
 
 export const navbarMessages = {
@@ -88,7 +94,7 @@ export const signupPageMessages = {
   signupButton: "Sign Up",
   loginLinkText: "I already have an account",
   userAlreadyExistsError: "Email already exists. Please try a different email.",
-  signupError: "An error occurred while signing up. Please try again later."
+  signupError: "An error occurred while signing up. Please try again later.",
 };
 
 export const yapDetailPageMessages = {
