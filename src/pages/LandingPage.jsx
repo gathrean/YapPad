@@ -2,16 +2,24 @@
 // Chat GPT 3.5 and edited by Group 6. 
 
 // React and Libraries
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // CSS and Assets
 import '../style/LandingPage.css';
 import '../App.css';
 import logo from '../assets/images/logo.png';
+import { useAuth } from '../authentication/AuthContext';
 
 function LandingPage() {
   let navigate = useNavigate();
+  const { isLoggedIn } = useAuth()
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/home")
+    }
+  })
 
   const handleLoginClick = () => {
     navigate('/login');

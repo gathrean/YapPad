@@ -1,5 +1,5 @@
 export const adminPageMessages = {
-  loadingText: "You must be logged in as an Admin to access this page! Oops!",
+  loadingText: "Loading...",
   tableHeaders: {
     username: "Username",
     email: "Email",

@@ -4,7 +4,7 @@
 // React and Libraries
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Contexts
 import { chamberMessages } from '../lang/messages/user';
@@ -14,8 +14,18 @@ import '../style/Chamber.css';
 
 // API
 import { API_BASE } from '../api_constants';
+import { useAuth } from '../authentication/AuthContext';
 
 function Chamber() {
+    const navigate = useNavigate();
+    const { isLoggedIn } = useAuth()
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate("/")
+        }
+    })
+
     const [yaps, setYaps] = useState([]);
 
     useEffect(() => {
@@ -34,7 +44,7 @@ function Chamber() {
     return (
         <div className="homepage-container yaps-grid">
             <h1>{chamberMessages.yappingChamber}</h1>
-            <p>{chamberMessages.comingSoon}</p>
+            {/* <p>{chamberMessages.comingSoon}</p> */}
             {yaps.map((yap) => (
                 <Link key={yap._id} to={`/chamber/${yap._id}`} className="yap-title">
                     {yap.title}
