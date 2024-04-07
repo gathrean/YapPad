@@ -11,8 +11,19 @@ import { adminPageMessages } from "../lang/messages/user";
 // CSS and Assets
 import { API_BASE } from "../api_constants";
 import styles from "../style/AdminPage.module.css";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../authentication/AuthContext";
 
 export default function AdminPage() {
+  const navigate = useNavigate();
+  const { isLoggedIn, isAdmin } = useAuth()
+
+  useEffect(() => {
+    if (!isLoggedIn || !isAdmin) {
+      navigate("/")
+    }
+  })
+
   let [users, setUsers] = useState([]);
   let [loading, setLoading] = useState(true);
 
@@ -33,12 +44,12 @@ export default function AdminPage() {
       alignItems: 'center',
       height: '100vh',
       textAlign: 'center',
-      padding: '0 20px' 
+      padding: '0 20px'
     }}>
       {adminPageMessages.loadingText}
     </div>
   );
-  
+
   return (
     <div className={styles.root}>
       <div className={styles.main}>
