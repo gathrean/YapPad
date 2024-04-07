@@ -17,6 +17,8 @@ import { API_BASE } from '../api_constants';
 
 function Chamber() {
     const [yaps, setYaps] = useState([]);
+    const [editingId, setEditingId] = useState(null); // track which yap is being edited
+    const [editFormData, setEditFormData] = useState({ title: '', content: '' });
 
     useEffect(() => {
         const fetchYaps = async () => {
@@ -31,14 +33,70 @@ function Chamber() {
         fetchYaps();
     }, []);
 
+
+    // deletion
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`${API_BASE}/yaps/delete/${id}`, { withCredentials: true });
+            const updatedYaps = yaps.filter(yap => yap._id !== id);
+            setYaps(updatedYaps);
+        } catch (error) {
+            console.error(chamberMessages.deleteError, error);
+        }
+    };
+
+
+    const startEdit = (yap) => {
+        setEditingId(yap._id);
+        setEditFormData({ title: yap.title, content: yap.content });
+    };
+
+    const handleEditChange = (event) => {
+        setEditFormData({
+            ...editFormData,
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    const saveEdit = async (id) => {
+        try {
+            const url = `${API_BASE}/yaps/update/${id}`;
+            await axios.put(url, editFormData, { withCredentials: true });
+    
+            const updatedYaps = yaps.map(yap => yap._id === id ? { ...yap, ...editFormData } : yap);
+            setYaps(updatedYaps);
+            setEditingId(null); // leave editing mode
+        } catch (error) {
+            console.error('Failed to update Yap:', error);
+        }
+    };
+    
+
     return (
         <div className="homepage-container yaps-grid">
             <h1>{chamberMessages.yappingChamber}</h1>
-            <p>{chamberMessages.comingSoon}</p>
             {yaps.map((yap) => (
-                <Link key={yap._id} to={`/chamber/${yap._id}`} className="yap-title">
-                    {yap.title}
-                </Link>
+                <div key={yap._id} className="yap-item">
+                    {editingId === yap._id ? (
+                        <>
+                            <input
+                                type="text"
+                                name="title"
+                                value={editFormData.title}
+                                onChange={handleEditChange}
+                            />
+                            <button onClick={() => saveEdit(yap._id)} className="save-button">Save</button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to={`/chamber/${yap._id}`} className="yap-title">
+                                {yap.title}
+                            </Link>
+                            <button onClick={() => startEdit(yap)} className="edit-button">Edit</button>
+                            <button onClick={() => handleDelete(yap._id)} className="delete-button">Delete</button>
+                        </>
+                    )}
+                </div>
             ))}
         </div>
     );

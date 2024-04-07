@@ -14,6 +14,7 @@ import styles from "../style/AdminPage.module.css";
 
 export default function AdminPage() {
   let [users, setUsers] = useState([]);
+  let [endpointStats, setEndpointStats] = useState([]);
   let [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,6 +22,12 @@ export default function AdminPage() {
       const ret = await axios.get(`${API_BASE}/admin/users`);
       setLoading(false);
       setUsers(ret.data);
+
+      // Fetching endpoint usage stats
+      const endpointStatsRes = await axios.get(`${API_BASE}/admin/api-usage-stats`);
+      setEndpointStats(endpointStatsRes.data);
+
+      setLoading(false);
     }
 
     fetchData();
@@ -56,6 +63,28 @@ export default function AdminPage() {
                 <td>{u.username}</td>
                 <td>{u.email}</td>
                 <td>{u.consumption || 0}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+
+       {/* Endpoint Usage Stats Table */}
+       <h2 style={{marginTop: "40px"}}>Endpoint Usage Stats</h2>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Endpoint</th>
+              <th>Requests</th>
+            </tr>
+          </thead>
+          <tbody>
+            {endpointStats.map((stat, index) => (
+              <tr key={index}>
+                <td>{stat.method}</td>
+                <td>{stat.endpoint}</td>
+                <td>{stat.count}</td>
               </tr>
             ))}
           </tbody>
