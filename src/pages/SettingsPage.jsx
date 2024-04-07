@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Settings() {
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth()
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -24,8 +24,7 @@ function Settings() {
 
   return (
     <div className="homepage-container">
-      <h1>{settingsPageMessages.settings}</h1>
-      <p>{settingsPageMessages.settingsDescription}</p>
+      <h1>{settingsPageMessages.pageTitle}</h1>
     </div>
   );
 }
