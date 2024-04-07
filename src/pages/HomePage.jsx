@@ -1,6 +1,3 @@
-// DISCLOSURE: the following JavaScript code has been created with the aid of
-// Chat GPT 3.5 and edited by Group 6.
-
 // React and Libraries
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
@@ -8,6 +5,7 @@ import axios from "axios";
 // CSS and Assets
 import "../style/Home.css";
 import Modal from "../components/Modal";
+import YapLoadingImage from '../assets/images/yappad-logo-orange.png';
 
 // Contexts
 import { homePageMessages } from "../lang/messages/user";
@@ -26,6 +24,7 @@ function HomePage() {
   const [modalMessage, setModalMessage] = useState("");
   const [error, setError] = useState("");
   const [apiCalls, setApiCalls] = useState(0);
+  const [loading, setLoading] = useState(false);
   const yapStoryRef = useRef(null);
 
   useEffect(() => {
@@ -61,17 +60,20 @@ function HomePage() {
 
   const fetchStory = async (textToContinue) => {
     try {
+      setLoading(true); // Set loading to true before making API call
       const response = await axios.post(`${API_BASE}/yaps/yap`, {
         withCredentials: true,
         data: {
           text: textToContinue,
         },
       });
+      setLoading(false);
       setError("");
       return response.data[0].generated_text;
     } catch (error) {
       console.error("Error fetching the continued story:", error);
       setError(homePageMessages.tooLong);
+      setLoading(false);
       return "";
     }
   };
@@ -159,7 +161,9 @@ function HomePage() {
       </div>
 
       <div className="yapStory" ref={yapStoryRef}>
-        {continuedStory ? (
+        {loading ? (
+          <img src={YapLoadingImage} alt="Loading..." className="yap-loading-image" />
+        ) : continuedStory ? (
           <p>{continuedStory}</p>
         ) : (
           <p className="yapStory-placeholder">

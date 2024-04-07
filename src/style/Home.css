@@ -174,3 +174,23 @@ body {
         padding: 20px 10px;
     }
 }
+
+@keyframes logoGrow {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.yap-loading-image {
+    width: 20px;
+    height: 20px;
+    animation: logoGrow 1s infinite;
+}
