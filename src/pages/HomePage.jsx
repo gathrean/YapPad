@@ -186,7 +186,7 @@ function HomePage() {
             <p><TypingAnimation text={continuedStory} /></p>
           </div>
         ) : continuedStory ? (
-          <p className="continued-story">{continuedStory}</p>
+          <p>{continuedStory}</p>
         ) : (
           <p className="yapStory-placeholder">
             {homePageMessages.yapStoryPlaceholder}
