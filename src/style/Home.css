@@ -190,7 +190,22 @@ body {
 }
 
 .yap-loading-image {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
     animation: logoGrow 1s infinite;
+}
+
+.typing-animation {
+    display: inline-block;
+    overflow: hidden;
+    animation:
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;
+}
+
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
