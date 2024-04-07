@@ -1,17 +1,10 @@
-// React and Libraries
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-
-// CSS and Assets
 import "../style/Home.css";
 import Modal from "../components/Modal";
 import YapLoadingImage from '../assets/images/yappad-logo-orange.png';
-
-// Contexts
 import { homePageMessages } from "../lang/messages/user";
 import { useAuth } from "../authentication/AuthContext";
-
-// API
 import { API_BASE } from "../api_constants";
 import { useNavigate } from "react-router-dom";
 
@@ -46,6 +39,7 @@ function HomePage() {
   const [error, setError] = useState("");
   const [apiCalls, setApiCalls] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [prevStory, setPrevStory] = useState(""); // Maintain previous story text
   const yapStoryRef = useRef(null);
 
   useEffect(() => {
@@ -106,6 +100,7 @@ function HomePage() {
       return;
     }
     if (newPartOfStory) {
+      setPrevStory(continuedStory); // Store previous story
       setContinuedStory(newPartOfStory);
     }
   };
@@ -121,12 +116,14 @@ function HomePage() {
     }
 
     const newPartOfStory = await fetchStory(continuedStory);
+    setPrevStory(continuedStory); // Store previous story
     setContinuedStory(newPartOfStory);
   };
 
   const handleDiscard = () => {
     setError("");
     setStoryInput("");
+    setPrevStory(""); // Clear previous story
     setContinuedStory("");
   };
 
@@ -148,6 +145,7 @@ function HomePage() {
       setModalMessage(homePageMessages.yapSavedSuccessfully);
       setShowModal(true);
       setStoryInput("");
+      setPrevStory(""); // Clear previous story
       setContinuedStory("");
     } catch (error) {
       console.error("Error saving the yap:", error);
@@ -186,13 +184,20 @@ function HomePage() {
             <p><TypingAnimation text={continuedStory} /></p>
           </div>
         ) : continuedStory ? (
-          <p>{continuedStory}</p>
+          <p>
+            {prevStory && <span style={{ color: "black" }}>{prevStory}</span>}
+            <span style={{ color: "#FF5108" }}>
+              {prevStory && continuedStory.startsWith(prevStory) ?
+                continuedStory.slice(prevStory.length) : continuedStory}
+            </span>
+          </p>
         ) : (
           <p className="yapStory-placeholder">
             {homePageMessages.yapStoryPlaceholder}
           </p>
         )}
       </div>
+
 
       <div className="buttons">
         {loading && (
@@ -218,7 +223,6 @@ function HomePage() {
           </>
         )}
       </div>
-
 
       <Modal
         isOpen={showModal}
