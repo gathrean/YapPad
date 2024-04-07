@@ -56,7 +56,7 @@ function YapPadNavbar() {
         <Navbar collapseOnSelect expand="lg" className="navbar-yappad">
             <Container>
                 <Navbar.Brand as={Link} to={brandLink} className="brand-yappad">
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', marginLeft: '20px' }}>
                         <img
                             src={YapPadLogo}
                             width="30"
@@ -64,9 +64,15 @@ function YapPadNavbar() {
                             className="d-inline-block align-top"
                             alt="YapPad Logo"
                         />
-                        {currentUser && <span className="navbar-welcome-message">Hello, {currentUser.username}</span>}
+                        {currentUser && (
+                            <div className="signed-in-container">
+                                <span className="navbar-signed-in-as">{navbarMessages.signInAs}</span>
+                                <span className="navbar-welcome-message">@{currentUser.username}</span>
+                            </div>
+                        )}
                     </div>
                 </Navbar.Brand>
+
 
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">

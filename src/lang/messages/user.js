@@ -75,6 +75,7 @@ export const navbarMessages = {
   signOut: "Sign Out",
   login: "Login",
   getStarted: "Get Started",
+  signInAs: "Signed in:",
 };
 
 export const resetPasswordPageMessages = {
