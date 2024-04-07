@@ -2,7 +2,7 @@
 // Chat GPT 3.5 and edited by Group 6.
 
 // React and Libraries
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 // CSS and Assets
@@ -26,6 +26,7 @@ function HomePage() {
   const [modalMessage, setModalMessage] = useState("");
   const [error, setError] = useState("");
   const [apiCalls, setApiCalls] = useState(0);
+  const yapStoryRef = useRef(null);
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -53,6 +54,11 @@ function HomePage() {
     if (error) setError("");
   };
 
+  useEffect(() => {
+    // automatically scroll yapStory container to the bottom
+    yapStoryRef.current.scrollTop = yapStoryRef.current.scrollHeight;
+  }, [continuedStory]);
+
   const fetchStory = async (textToContinue) => {
     try {
       const response = await axios.post(`${API_BASE}/yaps/yap`, {
@@ -73,6 +79,10 @@ function HomePage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const newPartOfStory = await fetchStory(storyInput);
+    if (!storyInput) {
+      setError(homePageMessages.enterYourInitialStory);
+      return;
+    }
     if (newPartOfStory) {
       setContinuedStory(newPartOfStory);
     }
@@ -93,6 +103,8 @@ function HomePage() {
   };
 
   const handleDiscard = () => {
+    setError("");
+    setStoryInput("");
     setContinuedStory("");
   };
 
@@ -133,7 +145,7 @@ function HomePage() {
       {error && <p className="error">{error}</p>}
       <div className="search-container">
         <form className="search-form" onSubmit={handleSubmit}>
-          <input
+          <textarea
             type="text"
             placeholder={homePageMessages.startTypingYourStory}
             className="search-input"
@@ -146,7 +158,7 @@ function HomePage() {
         </form>
       </div>
 
-      <div className="yapStory">
+      <div className="yapStory" ref={yapStoryRef}>
         {continuedStory ? (
           <p>{continuedStory}</p>
         ) : (
