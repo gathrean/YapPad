@@ -20,8 +20,8 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         async function runAsync() {
             try {
-                const response = await axios.get(`${API_BASE}/auth/authenticate`);
-                console.log(response)
+                const response = await axios.get(`${API_BASE}/auth/authenticate`, { withCredentials: true })
+
                 login()
                 if (response.data.isAdmin) {
                     setIsAdmin(true)
