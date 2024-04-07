@@ -2,7 +2,7 @@
 // Chat GPT 3.5 and edited by Group 6. 
 
 // React and Libraries
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -10,6 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../authentication/AuthContext.jsx';
 import { navbarMessages } from '../lang/messages/user';
 import { API_BASE } from '../api_constants.js';
+
 
 // CSS and Assets
 import "../style/Navbar.css";
@@ -24,6 +25,21 @@ import Navbar from 'react-bootstrap/Navbar';
 function YapPadNavbar() {
     const { isLoggedIn, isAdmin, logout } = useAuth();
     const navigate = useNavigate();
+    const [currentUser, setCurrentUser] = useState(null);
+
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            axios.get(`${API_BASE}/auth/authenticate`, { withCredentials: true })
+            .then(response => {
+                    setCurrentUser(response.data);
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        }
+    }, [isLoggedIn]);
+
 
     const handleSignOut = async () => {
         try {
@@ -34,21 +50,24 @@ function YapPadNavbar() {
             console.error('Error signing out:', error);
         }
     };
-    // Conditionally set the 'to' prop of Navbar.Brand
     const brandLink = isLoggedIn ? '/home' : '/';
 
     return (
         <Navbar collapseOnSelect expand="lg" className="navbar-yappad">
             <Container>
-                <Navbar.Brand as={Link} to={brandLink} className="brand-yappad">
-                    <img
-                        src={YapPadLogo}
-                        width="30"
-                        height="30"
-                        className="d-inline-block align-top"
-                        alt="YapPad Logo"
-                    />
-                </Navbar.Brand>
+            <Navbar.Brand as={Link} to={brandLink} className="brand-yappad">
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+        <img
+            src={YapPadLogo}
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+            alt="YapPad Logo"
+        />
+                        {currentUser && <span className="navbar-welcome-message">Hello, {currentUser.username}</span>}
+    </div>
+</Navbar.Brand>
+
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto"></Nav>

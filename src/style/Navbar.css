@@ -44,3 +44,11 @@
 .button.navbar-toggler:hover {
     background-color: white !important;
 }
+
+
+.navbar-welcome-message {
+    color: white !important; 
+    margin-left: 90px; 
+    font-weight: 100%;
+    font-size: 5vh;
+}
