@@ -79,8 +79,12 @@ function HomePage() {
   };
 
   const handleKeepYapping = async () => {
-    if (!storyInput && !continuedStory) {
+    if (!storyInput) {
       setError(homePageMessages.enterYourInitialStory);
+      return;
+    }
+    if (!continuedStory) {
+      setError(homePageMessages.startYappingFirst);
       return;
     }
 
@@ -94,6 +98,10 @@ function HomePage() {
 
   const handleSaveYap = async () => {
     try {
+      if (continuedStory.trim() === "") {
+        setError(homePageMessages.emptyYap);
+        return;
+      }
       const title = continuedStory.substring(0, 30);
       const content = continuedStory;
 
@@ -105,7 +113,6 @@ function HomePage() {
       console.log("Yap saved:", response.data);
       setModalMessage(homePageMessages.yapSavedSuccessfully);
       setShowModal(true);
-      //   alert(homePageMessages.yapSavedSuccessfully);
       setStoryInput("");
       setContinuedStory("");
     } catch (error) {

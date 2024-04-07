@@ -46,8 +46,10 @@ export const homePageMessages = {
   couldNotFindUniquePart: "Couldn't find a unique part to continue the story.",
   yapTooLong: "Yap too long dude! Pls try again.",
   yapSavedSuccessfully: "Yap has been successfully saved to your Chamber!",
-  closeModal: "Sweet!",
+  closeModal: "Sweet",
   failedToSaveYap: "Failed to save the yap. Please try again.",
+  emptyYap: "You can't save an empty yap. Please yap something!",
+  startYappingFirst: "Click Start Yapping to get your story started first!",
 };
 
 export const loginPageMessages = {
