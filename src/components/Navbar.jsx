@@ -31,7 +31,7 @@ function YapPadNavbar() {
     useEffect(() => {
         if (isLoggedIn) {
             axios.get(`${API_BASE}/auth/authenticate`, { withCredentials: true })
-            .then(response => {
+                .then(response => {
                     setCurrentUser(response.data);
                 })
                 .catch(error => {
@@ -55,18 +55,18 @@ function YapPadNavbar() {
     return (
         <Navbar collapseOnSelect expand="lg" className="navbar-yappad">
             <Container>
-            <Navbar.Brand as={Link} to={brandLink} className="brand-yappad">
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-        <img
-            src={YapPadLogo}
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-            alt="YapPad Logo"
-        />
+                <Navbar.Brand as={Link} to={brandLink} className="brand-yappad">
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <img
+                            src={YapPadLogo}
+                            width="30"
+                            height="30"
+                            className="d-inline-block align-top"
+                            alt="YapPad Logo"
+                        />
                         {currentUser && <span className="navbar-welcome-message">Hello, {currentUser.username}</span>}
-    </div>
-</Navbar.Brand>
+                    </div>
+                </Navbar.Brand>
 
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
