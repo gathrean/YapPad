@@ -15,6 +15,27 @@ import { useAuth } from "../authentication/AuthContext";
 import { API_BASE } from "../api_constants";
 import { useNavigate } from "react-router-dom";
 
+function TypingAnimation({ text }) {
+  const [typingText, setTypingText] = useState("");
+
+  useEffect(() => {
+    setTypingText(""); // Reset typingText when text changes
+    const interval = setInterval(() => {
+      setTypingText(prevText => {
+        if (prevText.length < text.length) {
+          return text.substring(0, prevText.length + 1);
+        } else {
+          clearInterval(interval);
+          return prevText;
+        }
+      });
+    }, 50);
+    return () => clearInterval(interval);
+  }, [text]);
+
+  return <span className="typing-animation">{typingText}</span>;
+}
+
 function HomePage() {
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
@@ -54,13 +75,12 @@ function HomePage() {
   };
 
   useEffect(() => {
-    // automatically scroll yapStory container to the bottom
     yapStoryRef.current.scrollTop = yapStoryRef.current.scrollHeight;
   }, [continuedStory]);
 
   const fetchStory = async (textToContinue) => {
     try {
-      setLoading(true); // Set loading to true before making API call
+      setLoading(true);
       const response = await axios.post(`${API_BASE}/yaps/yap`, {
         withCredentials: true,
         data: {
@@ -162,7 +182,9 @@ function HomePage() {
 
       <div className="yapStory" ref={yapStoryRef}>
         {loading ? (
-          <img src={YapLoadingImage} alt="Loading..." className="yap-loading-image" />
+          <div className="loading-container">
+            <p><TypingAnimation text={continuedStory} /></p>
+          </div>
         ) : continuedStory ? (
           <p>{continuedStory}</p>
         ) : (
@@ -171,19 +193,33 @@ function HomePage() {
           </p>
         )}
       </div>
+
       <div className="buttons">
-        <button className="button yapping" onClick={handleKeepYapping}>
-          {homePageMessages.keepYapping}
-        </button>
+        {loading && (
+          <>
+            <img src={YapLoadingImage} alt="Loading..." className="yap-loading-image" />
+          </>
+        )}
+        {!loading && (
+          <>
+            <div className="buttons">
+              <button className="button yapping" onClick={handleKeepYapping}>
+                {homePageMessages.keepYapping}
+              </button>
+            </div>
+            <div className="buttons">
+              <button className="button discard" onClick={handleDiscard}>
+                {homePageMessages.discard}
+              </button>
+              <button className="button save" onClick={handleSaveYap}>
+                {homePageMessages.save}
+              </button>
+            </div>
+          </>
+        )}
       </div>
-      <div className="buttons">
-        <button className="button discard" onClick={handleDiscard}>
-          {homePageMessages.discard}
-        </button>
-        <button className="button save" onClick={handleSaveYap}>
-          {homePageMessages.save}
-        </button>
-      </div>
+
+
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
