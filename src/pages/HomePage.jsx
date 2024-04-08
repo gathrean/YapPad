@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "../style/Home.css";
 import Modal from "../components/Modal";
-import YapLoadingImage from '../assets/images/yappad-logo-orange.png';
+import YapLoadingImage from "../assets/images/yappad-logo-orange.png";
 import { homePageMessages } from "../lang/messages/user";
 import { useAuth } from "../authentication/AuthContext";
 import { API_BASE } from "../api_constants";
@@ -110,6 +110,7 @@ function HomePage() {
     if (newPartOfStory) {
       setPrevStory(continuedStory);
       setContinuedStory(newPartOfStory);
+      fetchApiConsumption();
     }
   };
 
@@ -127,6 +128,7 @@ function HomePage() {
     setPrevStory(continuedStory); // Store previous story
     setContinuedStory(newPartOfStory);
     setNewPartOfStory(newPartOfStory); // Update new part of story
+    fetchApiConsumption();
   };
 
   const handleDiscard = () => {
@@ -229,7 +231,11 @@ function HomePage() {
 
       <div className="buttons">
         {loading ? (
-          <img src={YapLoadingImage} alt="Loading..." className="yap-loading-image" />
+          <img
+            src={YapLoadingImage}
+            alt="Loading..."
+            className="yap-loading-image"
+          />
         ) : (
           <>
             <div className="buttons">
