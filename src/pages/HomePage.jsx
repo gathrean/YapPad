@@ -8,25 +8,24 @@ import { useAuth } from "../authentication/AuthContext";
 import { API_BASE } from "../api_constants";
 import { useNavigate } from "react-router-dom";
 
-function TypingAnimation({ text }) {
-  const [typingText, setTypingText] = useState("");
+function TypingAnimation() {
+  const [dots, setDots] = useState("");
 
   useEffect(() => {
-    setTypingText(""); // Reset typingText when text changes
     const interval = setInterval(() => {
-      setTypingText(prevText => {
-        if (prevText.length < text.length) {
-          return text.substring(0, prevText.length + 1);
+      setDots((prevDots) => {
+        if (prevDots === "...") {
+          return "";
         } else {
-          clearInterval(interval);
-          return prevText;
+          return prevDots + ".";
         }
       });
-    }, 50);
-    return () => clearInterval(interval);
-  }, [text]);
+    }, 80);
 
-  return <span className="typing-animation">{typingText}</span>;
+    return () => clearInterval(interval);
+  }, []);
+
+  return <span> {dots}</span>;
 }
 
 function HomePage() {
@@ -41,6 +40,16 @@ function HomePage() {
   const [loading, setLoading] = useState(false);
   const [prevStory, setPrevStory] = useState(""); // Maintain previous story text
   const yapStoryRef = useRef(null);
+  // Inside your component function
+  const [nextText, setNextText] = useState(""); // Track the next text segment to be displayed
+
+  useEffect(() => {
+    // When continuedStory changes, update nextText to represent the next part of the story that will be orange
+    if (continuedStory && prevStory) {
+      const remainingText = continuedStory.slice(prevStory.length);
+      setNextText(remainingText);
+    }
+  }, [continuedStory, prevStory]);
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -181,14 +190,16 @@ function HomePage() {
       <div className="yapStory" ref={yapStoryRef}>
         {loading ? (
           <div className="loading-container">
-            <p><TypingAnimation text={continuedStory} /></p>
+            <p>
+              {prevStory && <span style={{ color: "black" }}>{prevStory}</span>}
+              <TypingAnimation />
+            </p>
           </div>
         ) : continuedStory ? (
           <p>
             {prevStory && <span style={{ color: "black" }}>{prevStory}</span>}
             <span style={{ color: "#FF5108" }}>
-              {prevStory && continuedStory.startsWith(prevStory) ?
-                continuedStory.slice(prevStory.length) : continuedStory}
+              {nextText}
             </span>
           </p>
         ) : (
