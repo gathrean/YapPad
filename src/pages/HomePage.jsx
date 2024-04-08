@@ -38,14 +38,12 @@ function HomePage() {
   const [error, setError] = useState("");
   const [apiCalls, setApiCalls] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [prevStory, setPrevStory] = useState(""); // Maintain previous story text
-  const [newPartOfStory, setNewPartOfStory] = useState(""); // Hold new part of story
+  const [prevStory, setPrevStory] = useState("");
+  const [newPartOfStory, setNewPartOfStory] = useState("");
   const yapStoryRef = useRef(null);
-  // Inside your component function
-  const [nextText, setNextText] = useState(""); // Track the next text segment to be displayed
+  const [nextText, setNextText] = useState("");
 
   useEffect(() => {
-    // When continuedStory changes, update nextText to represent the next part of the story that will be orange
     if (continuedStory && prevStory) {
       const remainingText = continuedStory.slice(prevStory.length);
       setNextText(remainingText);
@@ -207,15 +205,23 @@ function HomePage() {
           </div>
         ) : (
           <p>
-            {prevStory && nextText ? (
+            {continuedStory && !prevStory ? (
               <>
-                <span style={{ color: "black" }}>{prevStory}</span>
-                <span style={{ color: "#FF5108" }}>{nextText}</span>
+                <span style={{ color: "black" }}>{continuedStory}</span>
               </>
             ) : (
-              <p className="yapStory-placeholder">
-                {homePageMessages.yapStoryPlaceholder}
-              </p>
+              <>
+                {prevStory ? (
+                  <>
+                    <span style={{ color: "black" }}>{prevStory}</span>
+                    <span style={{ color: "#FF5108" }}>{nextText}</span>
+                  </>
+                ) : (
+                  <p className="yapStory-placeholder">
+                    {homePageMessages.yapStoryPlaceholder}
+                  </p>
+                )}
+              </>
             )}
           </p>
         )}
