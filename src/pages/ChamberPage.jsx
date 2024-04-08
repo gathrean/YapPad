@@ -93,7 +93,7 @@ function Chamber() {
                 <Link to={`/chamber/${yap._id}`} className="yap-title">
                   {yap.title}
                 </Link>
-                <button onClick={() => startEdit(yap)} className="edit-button">Edit</button>
+                <button onClick={() => startEdit(yap)} className="edit-button">Rename</button>
                 <button onClick={() => handleDelete(yap._id)} className="delete-button">Delete</button>
               </>
             )}
