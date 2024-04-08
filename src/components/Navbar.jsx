@@ -82,7 +82,6 @@ function YapPadNavbar() {
                             <>
                                 <Nav.Link className={`navlink-yappad ${window.location.pathname === '/home' ? 'active' : ''}`} as={Link} to="/home">{navbarMessages.yap}</Nav.Link>
                                 <Nav.Link className={`navlink-yappad ${window.location.pathname === '/chamber' ? 'active' : ''}`} as={Link} to="/chamber">{navbarMessages.yappingChamber}</Nav.Link>
-                                <Nav.Link className={`navlink-yappad ${window.location.pathname === '/settings' ? 'active' : ''}`} as={Link} to="/settings">{navbarMessages.settings}</Nav.Link>
                                 {isAdmin && <Nav.Link className={`navlink-yappad ${window.location.pathname === '/admin' ? 'active' : ''}`} as={Link} to="/admin">{navbarMessages.admin}</Nav.Link>}
                                 <Nav.Link className={`navlink-yappad`} onClick={handleSignOut}>{navbarMessages.signOut}</Nav.Link>
                             </>

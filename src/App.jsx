@@ -13,7 +13,6 @@ import AdminPage from './pages/AdminPage.jsx';
 import ChamberPage from './pages/ChamberPage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import LandingPage from './pages/LandingPage.jsx';
-import SettingsPage from './pages/SettingsPage.jsx';
 import SwaggerDocs from './pages/SwaggerDocs.jsx';
 
 // Component Imports
@@ -37,7 +36,6 @@ function App() {
           {/* Pages */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<HomePage />} />
-          <Route path="/settings" element={<SettingsPage />} />
           <Route path="/chamber" element={<ChamberPage />} />
           <Route path="/chamber/:id" element={<YapDetail />} />
           <Route path="/API/v1/docs" element={<SwaggerDocs />} />
