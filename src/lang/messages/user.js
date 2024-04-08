@@ -1,6 +1,15 @@
 // DISCLOSURE: the following JavaScript code has been created with the aid of 
 // Chat GPT 3.5 and edited by Group 6. 
 
+export const landingPageMessages = {
+  login: "Login",
+  getStarted: "Get Started",
+  viewAPIDocs: "View API Docs",
+  whatIsYap: "What is a Yap?",
+  yapDefinition: "1. To talk, especially informally; chat. <br /> 2. To chatter noisily. <br /> <br /> Example: <br /> <i>Stop yapping already, I have a HEADACHE!!</i>",
+  emoji: "🗣️",
+};
+
 export const adminPageMessages = {
   loadingText: "Loading...",
   tableHeaders: {

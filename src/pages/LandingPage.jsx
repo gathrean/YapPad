@@ -1,6 +1,3 @@
-// DISCLOSURE: the following JavaScript code has been created with the aid of 
-// Chat GPT 3.5 and edited by Group 6. 
-
 // React and Libraries
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +7,7 @@ import '../style/LandingPage.css';
 import '../App.css';
 import logo from '../assets/images/logo.png';
 import { useAuth } from '../authentication/AuthContext';
+import { landingPageMessages } from "../lang/messages/user";
 
 function LandingPage() {
   let navigate = useNavigate();
@@ -41,19 +39,14 @@ function LandingPage() {
         </div>
         <h1>Welcome to YapPad</h1>
         <div className="button-container">
-          <button className="landing-button" onClick={handleLoginClick}>Login</button>
-          <button className="landing-button" onClick={handleSignupClick}>Get Started</button>
-          <button className="landing-button docs" onClick={handleDocsClick}>View API Docs</button>
+          <button className="landing-button" onClick={handleLoginClick}>{landingPageMessages.login}</button>
+          <button className="landing-button" onClick={handleSignupClick}>{landingPageMessages.getStarted}</button>
+          <button className="landing-button docs" onClick={handleDocsClick}>{landingPageMessages.viewAPIDocs}</button>
         </div>
-        <h1>🗣️</h1>
-        <h1>What is a "Yap"?</h1>
+        <h1>{landingPageMessages.emoji}</h1>
+        <h1>{landingPageMessages.whatIsYap}</h1>
         <p className="yap-definition">
-          1. To talk, especially <b>informally</b>; chat. <br />
-          2. To chatter <b>noisily</b>. <br />
-          <br />
-          Example: <br />
-
-          <i>Stop yapping already, I have a HEADACHE!!</i>
+          <p className="yap-definition" dangerouslySetInnerHTML={{ __html: landingPageMessages.yapDefinition }}></p>
         </p>
       </div>
     </div>
