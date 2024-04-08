@@ -191,16 +191,18 @@ function HomePage() {
         {loading ? (
           <div className="loading-container">
             <p>
-              {prevStory && <span style={{ color: "black" }}>{prevStory}</span>}
-              <TypingAnimation />
+              {continuedStory && (
+                <>
+                  <span style={{ color: "black" }}>{continuedStory}</span>
+                  <TypingAnimation />
+                </>
+              )}
             </p>
           </div>
         ) : continuedStory ? (
           <p>
-            {prevStory && <span style={{ color: "black" }}>{prevStory}</span>}
-            <span style={{ color: "#FF5108" }}>
-              {nextText}
-            </span>
+            <span style={{ color: "black" }}>{prevStory}</span>
+            <span style={{ color: "#FF5108" }}>{nextText}</span>
           </p>
         ) : (
           <p className="yapStory-placeholder">
