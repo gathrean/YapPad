@@ -36,6 +36,7 @@ h1 {
 .button-container {
     display: flex;
     margin-top: 20px;
+    margin-bottom: 20px;
     text-align: center;
     justify-content: center;
     width: 30vw;
@@ -127,4 +128,10 @@ h1 {
         padding: 0;
     }
 
+}
+
+.yap-definition{
+    font-size: 1.5em;
+    text-align: start;
+    margin-top: 20px;
 }

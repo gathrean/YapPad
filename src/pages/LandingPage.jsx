@@ -45,6 +45,16 @@ function LandingPage() {
           <button className="landing-button" onClick={handleSignupClick}>Get Started</button>
           <button className="landing-button docs" onClick={handleDocsClick}>View API Docs</button>
         </div>
+        <h1>🗣️</h1>
+        <h1>What is a "Yap"?</h1>
+        <p className="yap-definition">
+          1. To talk, especially <b>informally</b>; chat. <br />
+          2. To chatter <b>noisily</b>. <br />
+          <br />
+          Example: <br />
+
+          <i>Stop yapping already, I have a HEADACHE!!</i>
+        </p>
       </div>
     </div>
   );

@@ -11,7 +11,6 @@ import { useAuth } from '../authentication/AuthContext.jsx';
 import { navbarMessages } from '../lang/messages/user';
 import { API_BASE } from '../api_constants.js';
 
-
 // CSS and Assets
 import "../style/Navbar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -40,16 +39,17 @@ function YapPadNavbar() {
         }
     }, [isLoggedIn]);
 
-
     const handleSignOut = async () => {
         try {
             await axios.post(`${API_BASE}/auth/logout`);
             logout();
+            setCurrentUser(null); // Set currentUser to null when signing out
             navigate('/');
         } catch (error) {
             console.error('Error signing out:', error);
         }
     };
+
     const brandLink = isLoggedIn ? '/home' : '/';
 
     return (
@@ -73,7 +73,6 @@ function YapPadNavbar() {
                     </div>
                 </Navbar.Brand>
 
-
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto"></Nav>
@@ -82,7 +81,6 @@ function YapPadNavbar() {
                             <>
                                 <Nav.Link className={`navlink-yappad ${window.location.pathname === '/home' ? 'active' : ''}`} as={Link} to="/home">{navbarMessages.yap}</Nav.Link>
                                 <Nav.Link className={`navlink-yappad ${window.location.pathname === '/chamber' ? 'active' : ''}`} as={Link} to="/chamber">{navbarMessages.yappingChamber}</Nav.Link>
-                                <Nav.Link className={`navlink-yappad ${window.location.pathname === '/settings' ? 'active' : ''}`} as={Link} to="/settings">{navbarMessages.settings}</Nav.Link>
                                 {isAdmin && <Nav.Link className={`navlink-yappad ${window.location.pathname === '/admin' ? 'active' : ''}`} as={Link} to="/admin">{navbarMessages.admin}</Nav.Link>}
                                 <Nav.Link className={`navlink-yappad`} onClick={handleSignOut}>{navbarMessages.signOut}</Nav.Link>
                             </>
