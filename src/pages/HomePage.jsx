@@ -1,21 +1,32 @@
-// DISCLOSURE: the following JavaScript code has been created with the aid of
-// Chat GPT 3.5 and edited by Group 6.
-
-// React and Libraries
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-
-// CSS and Assets
 import "../style/Home.css";
 import Modal from "../components/Modal";
-
-// Contexts
+import YapLoadingImage from '../assets/images/yappad-logo-orange.png';
 import { homePageMessages } from "../lang/messages/user";
 import { useAuth } from "../authentication/AuthContext";
-
-// API
 import { API_BASE } from "../api_constants";
 import { useNavigate } from "react-router-dom";
+
+function TypingAnimation() {
+  const [dots, setDots] = useState("");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDots((prevDots) => {
+        if (prevDots === "...") {
+          return "";
+        } else {
+          return prevDots + ".";
+        }
+      });
+    }, 160);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return <span> {dots}</span>;
+}
 
 function HomePage() {
   const { isLoggedIn } = useAuth();
@@ -26,7 +37,18 @@ function HomePage() {
   const [modalMessage, setModalMessage] = useState("");
   const [error, setError] = useState("");
   const [apiCalls, setApiCalls] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [prevStory, setPrevStory] = useState("");
+  const [newPartOfStory, setNewPartOfStory] = useState("");
   const yapStoryRef = useRef(null);
+  const [nextText, setNextText] = useState("");
+
+  useEffect(() => {
+    if (continuedStory && prevStory) {
+      const remainingText = continuedStory.slice(prevStory.length);
+      setNextText(remainingText);
+    }
+  }, [continuedStory, prevStory]);
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -55,23 +77,25 @@ function HomePage() {
   };
 
   useEffect(() => {
-    // automatically scroll yapStory container to the bottom
     yapStoryRef.current.scrollTop = yapStoryRef.current.scrollHeight;
   }, [continuedStory]);
 
   const fetchStory = async (textToContinue) => {
     try {
+      setLoading(true);
       const response = await axios.post(`${API_BASE}/yaps/yap`, {
         withCredentials: true,
         data: {
           text: textToContinue,
         },
       });
+      setLoading(false);
       setError("");
       return response.data[0].generated_text;
     } catch (error) {
       console.error("Error fetching the continued story:", error);
       setError(homePageMessages.tooLong);
+      setLoading(false);
       return "";
     }
   };
@@ -84,6 +108,7 @@ function HomePage() {
       return;
     }
     if (newPartOfStory) {
+      setPrevStory(continuedStory);
       setContinuedStory(newPartOfStory);
     }
   };
@@ -99,12 +124,15 @@ function HomePage() {
     }
 
     const newPartOfStory = await fetchStory(continuedStory);
+    setPrevStory(continuedStory); // Store previous story
     setContinuedStory(newPartOfStory);
+    setNewPartOfStory(newPartOfStory); // Update new part of story
   };
 
   const handleDiscard = () => {
     setError("");
     setStoryInput("");
+    setPrevStory(""); // Clear previous story
     setContinuedStory("");
   };
 
@@ -126,6 +154,7 @@ function HomePage() {
       setModalMessage(homePageMessages.yapSavedSuccessfully);
       setShowModal(true);
       setStoryInput("");
+      setPrevStory(""); // Clear previous story
       setContinuedStory("");
     } catch (error) {
       console.error("Error saving the yap:", error);
@@ -159,27 +188,67 @@ function HomePage() {
       </div>
 
       <div className="yapStory" ref={yapStoryRef}>
-        {continuedStory ? (
-          <p>{continuedStory}</p>
+        {loading ? (
+          <div className="loading-container">
+            <p>
+              {continuedStory ? (
+                <>
+                  <span style={{ color: "black" }}>{continuedStory}</span>
+                  <TypingAnimation text={newPartOfStory} />
+                </>
+              ) : (
+                <p className="yapStory-placeholder">
+                  {homePageMessages.yapStoryPlaceholder}
+                </p>
+              )}
+            </p>
+          </div>
         ) : (
-          <p className="yapStory-placeholder">
-            {homePageMessages.yapStoryPlaceholder}
+          <p>
+            {continuedStory && !prevStory ? (
+              <>
+                <span style={{ color: "#FF5108" }}>{continuedStory}</span>
+              </>
+            ) : (
+              <>
+                {prevStory ? (
+                  <>
+                    <span style={{ color: "black" }}>{prevStory}</span>
+                    <span style={{ color: "#FF5108" }}>{nextText}</span>
+                  </>
+                ) : (
+                  <p className="yapStory-placeholder">
+                    {homePageMessages.yapStoryPlaceholder}
+                  </p>
+                )}
+              </>
+            )}
           </p>
         )}
       </div>
+
       <div className="buttons">
-        <button className="button yapping" onClick={handleKeepYapping}>
-          {homePageMessages.keepYapping}
-        </button>
+        {loading ? (
+          <img src={YapLoadingImage} alt="Loading..." className="yap-loading-image" />
+        ) : (
+          <>
+            <div className="buttons">
+              <button className="button yapping" onClick={handleKeepYapping}>
+                {homePageMessages.keepYapping}
+              </button>
+            </div>
+            <div className="buttons">
+              <button className="button discard" onClick={handleDiscard}>
+                {homePageMessages.discard}
+              </button>
+              <button className="button save" onClick={handleSaveYap}>
+                {homePageMessages.save}
+              </button>
+            </div>
+          </>
+        )}
       </div>
-      <div className="buttons">
-        <button className="button discard" onClick={handleDiscard}>
-          {homePageMessages.discard}
-        </button>
-        <button className="button save" onClick={handleSaveYap}>
-          {homePageMessages.save}
-        </button>
-      </div>
+
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}

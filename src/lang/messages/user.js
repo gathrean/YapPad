@@ -14,8 +14,7 @@ export const chamberMessages = {
 };
 
 export const settingsPageMessages = {
-  pageTitle: "Settings",
-  comingSoon: "Coming soon!",
+  pageTitle: "Settings"
 };
 
 export const footerMessages = {
@@ -76,6 +75,7 @@ export const navbarMessages = {
   signOut: "Sign Out",
   login: "Login",
   getStarted: "Get Started",
+  signInAs: "Signed in:",
 };
 
 export const resetPasswordPageMessages = {

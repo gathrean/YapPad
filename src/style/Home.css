@@ -79,14 +79,15 @@ body {
 .yapStory {
     width: 80vw;
     max-width: 500px;
-    min-height: 150px;
+    /* min-height: 150px; */
+    /* height: max-content; */
     margin: 20px auto;
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 2px solid #ddd;
     padding: 20px;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
     color: #333;
@@ -173,4 +174,43 @@ body {
     .homepage-container {
         padding: 20px 10px;
     }
+}
+
+@keyframes logoGrow {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.yap-loading-image {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    animation: logoGrow 1s infinite;
+}
+
+.typing-animation {
+    display: inline-block;
+    overflow: hidden;
+    animation:
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;
+}
+
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.continued-story {
+    color: #ff5108;
 }
