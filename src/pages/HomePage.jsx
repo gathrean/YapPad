@@ -15,12 +15,12 @@ function TypingAnimation() {
     const interval = setInterval(() => {
       setDots((prevDots) => {
         if (prevDots === "...") {
-          return "";
+          return ".";
         } else {
           return prevDots + ".";
         }
       });
-    }, 80);
+    }, 160);
 
     return () => clearInterval(interval);
   }, []);
