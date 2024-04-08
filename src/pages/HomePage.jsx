@@ -15,7 +15,7 @@ function TypingAnimation() {
     const interval = setInterval(() => {
       setDots((prevDots) => {
         if (prevDots === "...") {
-          return ".";
+          return "";
         } else {
           return prevDots + ".";
         }
@@ -39,6 +39,7 @@ function HomePage() {
   const [apiCalls, setApiCalls] = useState(0);
   const [loading, setLoading] = useState(false);
   const [prevStory, setPrevStory] = useState(""); // Maintain previous story text
+  const [newPartOfStory, setNewPartOfStory] = useState(""); // Hold new part of story
   const yapStoryRef = useRef(null);
   // Inside your component function
   const [nextText, setNextText] = useState(""); // Track the next text segment to be displayed
@@ -109,7 +110,7 @@ function HomePage() {
       return;
     }
     if (newPartOfStory) {
-      setPrevStory(continuedStory); // Store previous story
+      setPrevStory(continuedStory);
       setContinuedStory(newPartOfStory);
     }
   };
@@ -127,6 +128,7 @@ function HomePage() {
     const newPartOfStory = await fetchStory(continuedStory);
     setPrevStory(continuedStory); // Store previous story
     setContinuedStory(newPartOfStory);
+    setNewPartOfStory(newPartOfStory); // Update new part of story
   };
 
   const handleDiscard = () => {
@@ -191,34 +193,38 @@ function HomePage() {
         {loading ? (
           <div className="loading-container">
             <p>
-              {continuedStory && (
+              {continuedStory ? (
                 <>
                   <span style={{ color: "black" }}>{continuedStory}</span>
-                  <TypingAnimation />
+                  <TypingAnimation text={newPartOfStory} />
                 </>
+              ) : (
+                <p className="yapStory-placeholder">
+                  {homePageMessages.yapStoryPlaceholder}
+                </p>
               )}
             </p>
           </div>
-        ) : continuedStory ? (
-          <p>
-            <span style={{ color: "black" }}>{prevStory}</span>
-            <span style={{ color: "#FF5108" }}>{nextText}</span>
-          </p>
         ) : (
-          <p className="yapStory-placeholder">
-            {homePageMessages.yapStoryPlaceholder}
+          <p>
+            {prevStory && nextText ? (
+              <>
+                <span style={{ color: "black" }}>{prevStory}</span>
+                <span style={{ color: "#FF5108" }}>{nextText}</span>
+              </>
+            ) : (
+              <p className="yapStory-placeholder">
+                {homePageMessages.yapStoryPlaceholder}
+              </p>
+            )}
           </p>
         )}
       </div>
 
-
       <div className="buttons">
-        {loading && (
-          <>
-            <img src={YapLoadingImage} alt="Loading..." className="yap-loading-image" />
-          </>
-        )}
-        {!loading && (
+        {loading ? (
+          <img src={YapLoadingImage} alt="Loading..." className="yap-loading-image" />
+        ) : (
           <>
             <div className="buttons">
               <button className="button yapping" onClick={handleKeepYapping}>
