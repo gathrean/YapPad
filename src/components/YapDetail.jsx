@@ -35,7 +35,7 @@ function YapDetail() {
 
     return (
         <div className="yap-detail-container">
-            <button onClick={() => navigate(-1)}>{yapDetailPageMessages.backToYappingChamberButton}</button>
+            <button className="yap-detail-button" onClick={() => navigate(-1)}>{yapDetailPageMessages.backToYappingChamberButton}</button>
             {yap ? (
                 <>
                     <h1 className="yap-detail-title">{yap.title}</h1>

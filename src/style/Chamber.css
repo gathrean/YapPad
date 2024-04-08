@@ -30,8 +30,13 @@
     background-color: rgba(255, 214, 187, 0.8); 
 }
 
+.yap-detail-button {
+    margin-bottom: 20px;
+}
+
 .yap-detail-container {
-    width: 80%; 
+    width: 80vw; 
+    max-width: 500px;
     margin: 40px auto; 
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.75); 
