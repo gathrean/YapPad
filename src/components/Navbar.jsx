@@ -11,7 +11,6 @@ import { useAuth } from '../authentication/AuthContext.jsx';
 import { navbarMessages } from '../lang/messages/user';
 import { API_BASE } from '../api_constants.js';
 
-
 // CSS and Assets
 import "../style/Navbar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -40,16 +39,17 @@ function YapPadNavbar() {
         }
     }, [isLoggedIn]);
 
-
     const handleSignOut = async () => {
         try {
             await axios.post(`${API_BASE}/auth/logout`);
             logout();
+            setCurrentUser(null); // Set currentUser to null when signing out
             navigate('/');
         } catch (error) {
             console.error('Error signing out:', error);
         }
     };
+
     const brandLink = isLoggedIn ? '/home' : '/';
 
     return (
@@ -72,7 +72,6 @@ function YapPadNavbar() {
                         )}
                     </div>
                 </Navbar.Brand>
-
 
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
