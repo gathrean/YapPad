@@ -1,10 +1,28 @@
+.homepage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    text-align: center;
+    padding: 40px 0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    margin: 20px;
+}
+
 .yaps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     width: 100%;
     gap: 20px;
     padding: 20px;
     justify-content: center;
+}
+
+.yaps-grid>* {
+    justify-self: center;
 }
 
 .yap-title {
@@ -18,16 +36,16 @@
     justify-content: center;
     align-items: center;
     height: 100px;
-    backdrop-filter: blur(5px); 
+    backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .yap-title:hover {
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    background-color: rgba(255, 214, 187, 0.8); 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 214, 187, 0.8);
 }
 
 .yap-detail-button {
@@ -35,46 +53,46 @@
 }
 
 .yap-detail-container {
-    width: 80vw; 
+    width: 80vw;
     max-width: 500px;
-    margin: 40px auto; 
+    margin: 40px auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.75); 
-    backdrop-filter: blur(10px); 
-    -webkit-backdrop-filter: blur(10px); 
-    border-radius: 15px; 
-    border: 1px solid rgba(255, 255, 255, 0.18); 
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     overflow-y: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    color: #333; 
-    text-align: left; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+    text-align: left;
 }
 
 .yap-detail-title {
     margin-bottom: 20px;
-    font-size: 24px; 
-    color: #FF5108; 
+    font-size: 24px;
+    color: #FF5108;
 }
 
 .yap-detail-content {
     white-space: pre-wrap;
-    font-family: 'Arial', sans-serif; 
-    text-align: justify; 
+    font-family: 'Arial', sans-serif;
+    text-align: justify;
 }
 
 
 button {
     padding: 10px 20px;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
     background-color: #FF5108;
     color: white;
     border: none;
-    border-radius: 25px !important; 
+    border-radius: 25px !important;
     cursor: pointer;
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #e62200;
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
