@@ -207,7 +207,7 @@ function HomePage() {
           <p>
             {continuedStory && !prevStory ? (
               <>
-                <span style={{ color: "black" }}>{continuedStory}</span>
+                <span style={{ color: "#FF5108" }}>{continuedStory}</span>
               </>
             ) : (
               <>
